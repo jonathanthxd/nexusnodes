@@ -2,21 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#05060a">
-  <meta name="description" content="Cuenta NexusNodes: acceso al panel y registro visual preparado para integrar con un backend seguro."><meta property="og:title" content="Cuenta — NexusNodes"><meta property="og:description" content="Accede a NexusNodes y continúa con tu configuración."><meta property="og:type" content="website"><meta property="og:url" content="https://nexusnodes.lat/cuenta.html">
-  <link rel="canonical" href="https://nexusnodes.lat/cuenta.html"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css">
+  <meta name="description" content="Cuenta NexusNodes: acceso al panel y registro visual preparado para integrar con un backend seguro."><meta property="og:title" content="Cuenta — NexusNodes"><meta property="og:description" content="Accede a NexusNodes y continúa con tu configuración."><meta property="og:type" content="website"><meta property="og:image" content="https://nexusnodes.lat/assets/Modelado.png"><meta property="og:url" content="https://nexusnodes.lat/cuenta.html">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nexusnodes.lat/assets/Modelado.png">
+  <link rel="canonical" href="https://nexusnodes.lat/cuenta.html"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="manifest" href="site.webmanifest"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css">
   <title>Cuenta — NexusNodes</title>
 </head>
 <body data-page="account">
   <div data-site-header></div>
-  <main id="main" class="account-page">
+  <main id="main" class="account-page account-page-v3">
     <section class="account-visual">
-      <span class="account-orbit"></span><span class="account-node n1"></span><span class="account-node n2"></span><span class="account-node n3"></span><span class="account-node n4"></span><span class="account-center"><img src="assets/SinFondo.png" alt=""></span>
-      <div class="account-copy" data-reveal><span class="label">Nexus Account</span><h1>Una cuenta.<br><span class="gradient-text">Todos tus servicios.</span></h1><p>Minecraft, VPS y panel dentro del mismo recorrido. El frontend queda listo para integrarse con autenticación real sin volver a diseñar la experiencia.</p><div class="account-benefits"><span>Minecraft</span><span>VPS</span><span>Billing ready</span><span>Pterodactyl</span></div></div>
+      <div class="account-grid-bg" aria-hidden="true"></div><span class="account-orbit"></span><span class="account-node n1"></span><span class="account-node n2"></span><span class="account-node n3"></span><span class="account-node n4"></span><span class="account-center"><img src="assets/SinFondo.png" alt=""></span>
+      <div class="account-copy" data-reveal><span class="label">Nexus Account</span><h1>Una cuenta.<br><span class="gradient-text">Todos tus servicios.</span></h1><p>Minecraft, VPS y panel dentro del mismo recorrido. La experiencia conserva la configuración elegida sin enviar secretos desde el frontend.</p><div class="account-benefits"><span>Minecraft</span><span>VPS</span><span>Order context</span><span>Pterodactyl</span></div></div>
+      <aside class="account-order-card" id="accountOrderCard" hidden></aside>
     </section>
 
     <section class="account-form-wrap">
-      <div class="auth-card" data-reveal>
-        <h2>Bienvenido.</h2><p class="auth-sub" id="authSubtitle">Entra al panel o crea tu cuenta NexusNodes.</p>
+      <div class="auth-card auth-card-v3" data-reveal>
+        <div class="auth-brand-mini"><span class="brand-logo-wrap"><img src="assets/SinFondo.png" alt="" width="30" height="30"></span><span>Nexus secure flow</span></div>
+        <h2>Bienvenido.</h2><p class="auth-sub" id="authSubtitle">Entra al panel o prepara una nueva cuenta NexusNodes.</p>
         <div class="account-tabs"><button type="button" class="active" data-auth-tab="login">Iniciar sesión</button><button type="button" data-auth-tab="register">Crear cuenta</button></div>
 
         <div data-auth-panel="login">
@@ -25,7 +28,7 @@
             <div class="field"><label for="loginPassword">Contraseña</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" required></div>
             <button class="button primary full" type="submit">Continuar al panel</button>
           </form>
-          <div class="auth-note"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 7.7 7.5 9.5 4.3-1.8 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></span><span>Esta versión no envía tu contraseña desde el HTML estático. Al continuar abre el panel oficial para autenticarte allí de forma segura.</span></div>
+          <div class="auth-note"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 7.7 7.5 9.5 4.3-1.8 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></span><span>El login estático no procesa credenciales: abre el panel oficial para autenticarte allí.</span></div>
         </div>
 
         <div data-auth-panel="register" hidden>
@@ -33,15 +36,15 @@
           <form class="auth-form" id="registerForm" novalidate>
             <div class="field-row"><div class="field"><label for="firstName">Nombre</label><input id="firstName" name="first_name" autocomplete="given-name" required minlength="2"></div><div class="field"><label for="lastName">Apellido</label><input id="lastName" name="last_name" autocomplete="family-name" required minlength="2"></div></div>
             <div class="field"><label for="registerEmail">Correo</label><input id="registerEmail" name="email" type="email" autocomplete="email" required></div>
-            <div class="field"><label for="username">Usuario del panel</label><input id="username" name="username" autocomplete="username" pattern="[A-Za-z0-9._-]+" minlength="3" maxlength="30" required></div>
-            <div class="field-row"><div class="field"><label for="registerPassword">Contraseña</label><input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" required></div><div class="field"><label for="confirmPassword">Repetir</label><input id="confirmPassword" name="password_confirm" type="password" autocomplete="new-password" minlength="8" required></div></div>
-            <button class="button primary full" type="submit">Solicitar creación de cuenta</button>
+            <div class="field"><label for="username">Usuario del panel</label><input id="username" name="username" autocomplete="username" pattern="[A-Za-z0-9._-]+" minlength="3" maxlength="30" required><small>Solo letras, números, punto, guion y guion bajo.</small></div>
+            <div class="field-row"><div class="field"><label for="registerPassword">Contraseña</label><input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" required><div class="password-strength" id="passwordStrength" data-score="0"><i></i><i></i><i></i><i></i><i></i><span>Débil</span></div></div><div class="field"><label for="confirmPassword">Repetir</label><input id="confirmPassword" name="password_confirm" type="password" autocomplete="new-password" minlength="8" required></div></div>
+            <button class="button primary full" type="submit">Validar formulario</button>
           </form>
           <div class="form-message info" id="registerMessage" role="status"></div>
-          <div class="auth-note"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></span><span>El frontend está terminado, pero crear usuarios en Pterodactyl requiere un endpoint backend con rate limit, CSRF/session handling y una API key guardada solo en servidor. El README incluye el contrato sugerido.</span></div>
+          <div class="auth-note"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></span><span>Crear usuarios y órdenes reales requiere backend, rate limit, sesión/CSRF y claves administrativas guardadas solo en servidor.</span></div>
         </div>
 
-        <div class="support-link" id="support">¿Necesitas ayuda? <a href="https://panel.nexusnodes.lat" target="_blank" rel="noopener">Abrir panel NexusNodes</a></div>
+        <div class="support-link" id="support">¿Necesitas ayuda? <a href="contacto.html">Abrir contacto</a></div>
       </div>
     </section>
   </main>

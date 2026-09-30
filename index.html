@@ -4,217 +4,133 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#05060a">
-  <meta name="description" content="NexusNodes: hosting de Minecraft y VPS con nodos en Norteamérica y LATAM, panel Pterodactyl y precios claros.">
+  <meta name="description" content="NexusNodes: hosting de Minecraft y VPS con nodos en Norteamérica y LATAM, panel Pterodactyl y recursos claros.">
   <meta property="og:title" content="NexusNodes — Minecraft Hosting & VPS">
-  <meta property="og:description" content="Infraestructura clara, rápida y pensada para comunidades de LATAM.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nexusnodes.lat/">
-  <meta property="og:image" content="https://nexusnodes.lat/assets/Modelado.png">
+  <meta property="og:description" content="Infraestructura clara para Minecraft, VPS y comunidades de LATAM.">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://nexusnodes.lat/"><meta property="og:image" content="https://nexusnodes.lat/assets/Modelado.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nexusnodes.lat/assets/Modelado.png">
   <link rel="canonical" href="https://nexusnodes.lat/">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <title>NexusNodes — Hosting Minecraft y VPS</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://nexusnodes.lat/#organization","name":"NexusNodes","url":"https://nexusnodes.lat/","logo":"https://nexusnodes.lat/assets/icon-512.png"},{"@type":"WebSite","@id":"https://nexusnodes.lat/#website","url":"https://nexusnodes.lat/","name":"NexusNodes","publisher":{"@id":"https://nexusnodes.lat/#organization"},"inLanguage":"es"}]}</script>
 </head>
 <body data-page="home">
   <div data-site-header></div>
-
   <main id="main">
-    <section class="hero">
-      <div class="container wide hero-grid">
+    <section class="hero hero-v3">
+      <div class="hero-aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="container wide hero-grid-v3">
         <div class="hero-copy" data-reveal>
-          <span class="status-badge"><span class="status-dot"></span> Infraestructura lista para desplegar</span>
-          <h1 class="display">Tu servidor.<br><span class="gradient">Nuestra infraestructura.</span></h1>
-          <p class="lead">Minecraft y VPS sobre una red distribuida entre Norteamérica y LATAM. Panel Pterodactyl, recursos claros y una experiencia hecha para desplegar sin fricción.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="planes.html#configurador">Crear servidor <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-            <a class="button ghost" href="network.html">Explorar infraestructura</a>
-          </div>
-          <div class="hero-meta">
-            <span><i class="check-dot">✓</i> Java &amp; Bedrock</span>
-            <span><i class="check-dot">✓</i> Pterodactyl</span>
-            <span><i class="check-dot">✓</i> Desde $0.50/GB</span>
-          </div>
+          <span class="status-badge"><span class="status-dot"></span> Minecraft + VPS · Norteamérica + LATAM</span>
+          <h1 class="display">Infraestructura que<br><span class="gradient">entiendes antes de pagar.</span></h1>
+          <p class="lead">Configura recursos, compara nodos y entiende qué estás contratando. Sin esconder RAM, CPU o región detrás de nombres de plan.</p>
+          <div class="hero-actions"><a class="button primary" href="planes.html#smart-sizing">Encontrar mi configuración <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="button ghost" href="network.html">Explorar network</a></div>
+          <div class="hero-meta"><span><i class="check-dot">✓</i> Java &amp; Bedrock</span><span><i class="check-dot">✓</i> Linux VPS</span><span><i class="check-dot">✓</i> Panel Pterodactyl</span></div>
         </div>
 
-        <div class="network-card" data-tilt data-reveal data-reveal-delay="1" aria-label="Visualización de la red NexusNodes">
-          <div class="network-top"><strong>Nexus Network</strong><span>5 nodos configurados</span></div>
-          <div class="network-map">
-            <svg class="world-lines" viewBox="0 0 600 340" aria-hidden="true">
-              <defs><linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#775cff" stop-opacity=".12"/><stop offset=".5" stop-color="#a18cff" stop-opacity=".88"/><stop offset="1" stop-color="#4d8dff" stop-opacity=".12"/></linearGradient></defs>
-              <path d="M110 95C220 20 360 20 490 90"/>
-              <path d="M85 165C210 105 350 110 530 185"/>
-              <path d="M145 260C265 210 380 220 515 280"/>
-              <path class="connection" d="M155 103C235 128 272 152 330 165"/>
-              <path class="connection" d="M330 165C350 188 350 208 356 230"/>
-              <path class="connection" d="M356 230C366 258 388 275 408 288"/>
-              <path class="connection soft" d="M155 103C240 190 310 247 408 288"/>
-            </svg>
-            <div class="node dal"><span class="node-dot"></span><span class="node-label">DAL-01<small>Dallas · Intel</small></span></div>
-            <div class="node mia1 green"><span class="node-dot"></span><span class="node-label">MIA-01<small>Miami · Ryzen 7</small></span></div>
-            <div class="node mia2"><span class="node-dot"></span><span class="node-label">MIA-02<small>Miami · Ryzen 9</small></span></div>
-            <div class="node scl green"><span class="node-dot"></span><span class="node-label">SCL-01<small>Santiago · Intel</small></span></div>
-            <div class="node arg"><span class="node-dot"></span><span class="node-label">ARG-01<small>Argentina · Xeon</small></span></div>
+        <aside class="launchpad" data-tilt data-reveal data-reveal-delay="1" aria-label="Nexus Launchpad">
+          <div class="launchpad-head"><div><span class="launch-eyebrow">NEXUS LAUNCHPAD</span><strong id="homeLaunchName">survival-01</strong></div><span class="live-pill"><i></i> READY</span></div>
+          <div class="launch-tabs"><button class="active" type="button" data-home-product="minecraft">Minecraft</button><button type="button" data-home-product="vps">VPS</button></div>
+          <div class="launch-canvas">
+            <div class="launch-orbit o1"></div><div class="launch-orbit o2"></div>
+            <div class="launch-core"><img src="assets/SinFondo.png" alt="" width="72" height="72"><span id="homeLaunchProduct">Minecraft</span><small id="homeLaunchNode">MIA-01</small></div>
+            <div class="launch-spec s1"><span>RAM</span><strong id="homeLaunchRam">8 GB</strong></div>
+            <div class="launch-spec s2"><span>CPU</span><strong id="homeLaunchCpu">2 cores</strong></div>
+            <div class="launch-spec s3"><span>NVMe</span><strong id="homeLaunchDisk">35 GB</strong></div>
+            <div class="launch-spec s4"><span>Processor</span><strong id="homeLaunchProcessor">Ryzen 7</strong></div>
           </div>
-          <div class="network-footer">
-            <div class="network-stat"><span>Entrada</span><strong>$0.50/GB</strong></div>
-            <div class="network-stat"><span>Regiones</span><strong>5 nodos</strong></div>
-            <div class="network-stat"><span>Panel</span><strong>Pterodactyl</strong></div>
-          </div>
-        </div>
+          <div class="launch-node-wrap"><span>Deploy region</span><div class="launch-nodes" id="homeNodeList"></div></div>
+          <div class="launch-total"><div><span>Estimación</span><strong id="homeLaunchPrice">$0.00</strong><small>/ mes*</small></div><a class="button primary compact" id="homeLaunchButton" href="planes.html#configurador">Personalizar</a></div>
+          <p class="launch-disclaimer">* Usa las tarifas actuales del frontend. CPU/disk adicional siguen siendo multiplicadores configurables.</p>
+        </aside>
       </div>
     </section>
 
-    <div class="metric-strip">
+    <section class="metric-strip metric-strip-v3">
       <div class="container metric-panel" data-reveal>
-        <div class="metric"><strong>5</strong><span>Nodos disponibles</span></div>
-        <div class="metric"><strong>$0.50</strong><span>Desde / GB en Minecraft</span></div>
-        <div class="metric"><strong>24/7</strong><span>Soporte anunciado</span></div>
-        <div class="metric"><strong>∞</strong><span>Splits según plan actual</span></div>
+        <div class="metric"><strong><span data-count="5">5</span></strong><span>Nodos en catálogo</span></div>
+        <div class="metric"><strong>$0.50</strong><span>Entrada Minecraft / GB</span></div>
+        <div class="metric"><strong>2</strong><span>Productos principales</span></div>
+        <div class="metric"><strong>1</strong><span>Fuente de datos central</span></div>
       </div>
-    </div>
+    </section>
 
-    <section class="section" id="productos">
-      <div class="container">
-        <div class="section-heading" data-reveal>
-          <span class="label">Productos</span>
-          <h2>Una plataforma.<br>Dos formas de desplegar.</h2>
-          <p>Minecraft cuando quieres jugar. VPS cuando quieres construir alrededor de tu comunidad. Ambos con el mismo lenguaje visual y una infraestructura fácil de entender.</p>
+    <section class="section" id="ruta">
+      <div class="container route-planner-grid">
+        <div class="section-heading" data-reveal><span class="label">Route Planner</span><h2>Empieza por dónde están tus jugadores.</h2><p>Selecciona dónde se concentra tu audiencia y la web te propone un punto de partida geográfico. No mostramos ping inventado: la recomendación es orientativa hasta conectar un Looking Glass real.</p>
+          <label class="select-shell planner-select"><span>Audiencia principal</span><select id="audienceSelect" aria-label="Audiencia principal"></select></label>
         </div>
+        <article class="route-result" data-reveal data-reveal-delay="1">
+          <div class="route-result-glow"></div><div class="route-result-top"><span id="routeFlag">🇺🇸</span><div><small>Nodo sugerido</small><strong id="routeNode">Miami · MIA-01</strong><p id="routeCpu">Ryzen 7 3700X</p></div><span class="tier-badge balanced">START</span></div>
+          <div class="route-line"><span></span><i></i><span></span></div>
+          <p id="routeNote">Selecciona una audiencia.</p><div class="route-result-bottom"><div><strong id="routePrice">—</strong><small id="routePerformance">—</small></div><a class="button ghost compact" id="routeCta" href="planes.html#configurador">Usar nodo</a></div>
+        </article>
+      </div>
+    </section>
 
-        <div class="bento">
-          <article class="product-card large" data-reveal>
-            <div class="product-head">
-              <div><span class="kicker">Minecraft Hosting</span><h3>Servidor listo para jugar.</h3><p>Java, Bedrock, plugins, modpacks y proxies. Elige recursos, ubicación y despliega desde una experiencia clara.</p></div>
-              <span class="icon-box"><span class="icon" style="--icon-size:22px"><svg viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg></span></span>
-            </div>
+    <section class="section soft border-top" id="productos">
+      <div class="container">
+        <div class="section-heading" data-reveal><span class="label">Productos</span><h2>Un mismo lenguaje.<br>Dos tipos de carga.</h2><p>Minecraft y VPS dejan de competir por la misma tarjeta genérica. Cada producto explica qué resuelve y qué control obtiene el usuario.</p></div>
+        <div class="bento v3-bento">
+          <article class="product-card large product-minecraft" data-reveal>
+            <div class="product-head"><div><span class="kicker">Minecraft Hosting</span><h3>Tu mundo, dimensionado con contexto.</h3><p>Elige entre Vanilla/Paper, plugins, modded o network. El Smart Sizer propone un punto de partida según jugadores y complejidad.</p></div><span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg></span></span></div>
             <a class="product-link" href="minecraft.html">Explorar Minecraft <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-            <div class="instance-ui" aria-hidden="true">
-              <div class="instance-top"><strong>survival-01</strong><small>MIA-02</small><span class="live-pill"><i></i> ONLINE</span></div>
-              <div class="instance-body">
-                <div class="instance-col">
-                  <div class="usage"><div class="usage-head"><span>CPU</span><span>38%</span></div><div class="usage-bar"><i style="width:38%"></i></div></div>
-                  <div class="usage"><div class="usage-head"><span>RAM</span><span>5.2 / 8 GB</span></div><div class="usage-bar"><i style="width:65%"></i></div></div>
-                  <div class="usage"><div class="usage-head"><span>PLAYERS</span><span>17 / 50</span></div><div class="usage-bar"><i style="width:34%"></i></div></div>
-                </div>
-                <div class="instance-col console-lines"><span class="good">[Nexus]</span> Server online<br><span class="accent">[Paper]</span> Done (4.213s)!<br>[Server] 17 players connected<br>&gt; TPS: 20.0</div>
-              </div>
-            </div>
+            <div class="instance-ui v3-instance" aria-hidden="true"><div class="instance-top"><strong>community-01</strong><small>MIA-01</small><span class="live-pill"><i></i> ONLINE</span></div><div class="instance-body"><div class="instance-col"><div class="usage"><div class="usage-head"><span>CPU</span><span>38%</span></div><div class="usage-bar"><i style="width:38%"></i></div></div><div class="usage"><div class="usage-head"><span>RAM</span><span>5.2 / 8 GB</span></div><div class="usage-bar"><i style="width:65%"></i></div></div><div class="usage"><div class="usage-head"><span>PLAYERS</span><span>17 / 50</span></div><div class="usage-bar"><i style="width:34%"></i></div></div></div><div class="instance-col console-lines"><span class="good">[Nexus]</span> container ready<br><span class="accent">[Paper]</span> Done (4.213s)!<br>[Server] 17 players connected<br>&gt; TPS: 20.0</div></div></div>
           </article>
-
           <div class="bento-stack">
-            <article class="product-card" data-reveal data-reveal-delay="1">
-              <div class="product-head"><div><span class="kicker">Cloud VPS</span><h3>Tu stack, tu root.</h3><p>Instancias Linux para bots, paneles, APIs, bases de datos y servicios propios.</p></div></div>
-              <a class="product-link" href="vps.html">Explorar VPS <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-              <div class="vps-mini" aria-hidden="true"><code><span class="prompt">root@nexus</span>:~# neofetch</code><code><b>OS</b> Ubuntu Linux</code><code><b>CPU</b> 4 vCPU</code><code><b>RAM</b> 8 GB</code></div>
-            </article>
-            <article class="product-card" data-reveal data-reveal-delay="2">
-              <div class="product-head"><div><span class="kicker">Nexus Network</span><h3>Elige dónde vive.</h3><p>Dallas, Miami, Santiago y Argentina dentro del catálogo actual.</p></div></div>
-              <a class="product-link" href="network.html">Ver ubicaciones <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-              <div class="network-mini" aria-hidden="true"><svg viewBox="0 0 260 70"><defs><linearGradient id="smallGradient"><stop stop-color="#775cff"/><stop offset="1" stop-color="#4d8dff"/></linearGradient></defs><path d="M20 49C72 4 111 54 151 24s70 3 90 22"/><circle cx="20" cy="49" r="4"/><circle cx="100" cy="35" r="4"/><circle cx="151" cy="24" r="4"/><circle cx="241" cy="46" r="4"/></svg></div>
-            </article>
+            <article class="product-card" data-reveal data-reveal-delay="1"><div class="product-head"><div><span class="kicker">Cloud VPS</span><h3>Linux sin caja negra.</h3><p>Selecciona distro, carga y recursos. Ideal para bots, APIs, paneles, bases de datos y stacks propios.</p></div></div><a class="product-link" href="vps.html">Construir VPS <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><div class="vps-mini" aria-hidden="true"><code><span class="prompt">root@nexus</span>:~# systemctl status app</code><code><b>●</b> active (running)</code><code><b>RAM</b> 8 GB</code><code><b>NVMe</b> 80 GB</code></div></article>
+            <article class="product-card network-product" data-reveal data-reveal-delay="2"><div class="product-head"><div><span class="kicker">Nexus Network</span><h3>Cinco nodos comparables.</h3><p>Hardware, región y tarifa base en una sola vista, con asesor de ubicación y Node Explorer.</p></div></div><a class="product-link" href="network.html">Abrir Node Explorer <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><div class="network-mini-v3" aria-hidden="true"><i class="nm-line l1"></i><i class="nm-line l2"></i><i class="nm-dot d1"></i><i class="nm-dot d2"></i><i class="nm-dot d3"></i><i class="nm-dot d4"></i><span>DAL</span><span>MIA</span><span>SCL</span><span>ARG</span></div></article>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="control">
+      <div class="container control-grid-v3">
+        <div data-reveal><span class="label">Control Plane</span><h2>El panel deja de ser una palabra de marketing.</h2><p class="lead">La web muestra cómo encaja Pterodactyl en la experiencia: consola, archivos, backups, bases de datos y control del servicio. El provisioning real sigue perteneciendo al backend.</p>
+          <div class="control-points"><div><span>01</span><p><strong>Frontend público</strong> configura y prepara el pedido.</p></div><div><span>02</span><p><strong>Backend privado</strong> valida pago, cuenta y provisioning.</p></div><div><span>03</span><p><strong>Pterodactyl</strong> opera la instancia sin exponer claves admin al navegador.</p></div></div>
+        </div>
+        <div class="panel-mock panel-mock-v3" data-reveal data-reveal-delay="1" aria-hidden="true"><div class="panel-bar"><i></i><i></i><i></i><span>panel.nexusnodes.lat / community-01</span></div><div class="panel-layout"><aside class="panel-side"><strong>SERVER</strong><div class="panel-nav-item active"><i></i>Console</div><div class="panel-nav-item"><i></i>Files</div><div class="panel-nav-item"><i></i>Databases</div><div class="panel-nav-item"><i></i>Schedules</div><div class="panel-nav-item"><i></i>Backups</div></aside><div class="panel-main"><div class="panel-server-head"><h4>community-01</h4><span>● RUNNING</span></div><div class="panel-stats"><div class="panel-stat"><small>CPU</small><strong>38.4%</strong></div><div class="panel-stat"><small>Memory</small><strong>5.2 GB</strong></div><div class="panel-stat"><small>Disk</small><strong>12.8 GB</strong></div></div><div class="panel-console"><span class="purple">[Nexus]</span> Allocating container resources...<br><span class="green">[Node]</span> MIA-01 attached<br>[Paper] Loading libraries...<br>[Server thread/INFO]: Preparing spawn area<br><span class="green">[Server thread/INFO]: Done (4.213s)!</span><br><br>&gt; <span class="purple">list</span><br>There are 17 of a max of 50 players online.</div></div></div></div>
       </div>
     </section>
 
     <section class="section soft border-top">
       <div class="container">
-        <div class="section-heading center" data-reveal>
-          <span class="label">Ecosistema Minecraft</span>
-          <h2>Construido para tu forma de jugar.</h2>
-          <p>La interfaz ya contempla los stacks más habituales para que el producto se entienda desde la primera visita.</p>
-        </div>
-        <div class="logo-cloud" data-reveal>
-          <span class="logo-chip">Paper</span><span class="logo-chip">Purpur</span><span class="logo-chip">Fabric</span><span class="logo-chip">Forge</span><span class="logo-chip">NeoForge</span><span class="logo-chip">Velocity</span><span class="logo-chip">BungeeCord</span><span class="logo-chip">Java</span><span class="logo-chip">Bedrock</span>
+        <div class="section-heading center" data-reveal><span class="label">Build philosophy</span><h2>Más producto. Menos humo.</h2><p>La v3 refuerza lo que se puede explicar con datos del catálogo y evita convertir placeholders en promesas.</p></div>
+        <div class="principle-grid">
+          <article class="principle-card" data-reveal><span>01</span><h3>Datos centralizados</h3><p>Nodos, tarifas, workloads y estados viven en <code>data.js</code>. Una edición alimenta varias páginas.</p></article>
+          <article class="principle-card" data-reveal data-reveal-delay="1"><span>02</span><h3>Precios desglosados</h3><p>RAM, CPU adicional y almacenamiento se muestran por separado. Los extras siguen claramente marcados como configurables.</p></article>
+          <article class="principle-card" data-reveal data-reveal-delay="2"><span>03</span><h3>Recomendaciones, no garantías</h3><p>El Smart Sizer y Route Planner son puntos de partida; no inventan ping ni capacidad que no exista en la fuente.</p></article>
+          <article class="principle-card" data-reveal data-reveal-delay="3"><span>04</span><h3>Backend donde importa</h3><p>Cuenta, pago y provisioning se diseñan para endpoints privados, no para secretos embebidos en JavaScript.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-heading" data-reveal><span class="label">Deploy</span><h2>De cero a servidor en cuatro pasos.</h2><p>Un flujo de compra entendible, sin hacer que el usuario descifre infraestructura antes de poder empezar.</p></div>
-        <div class="steps">
-          <article class="step-card" data-reveal><h3>Elige producto</h3><p>Minecraft o VPS según lo que quieres ejecutar.</p></article>
-          <article class="step-card" data-reveal data-reveal-delay="1"><h3>Selecciona ubicación</h3><p>Compara CPU y precio por región desde una sola pantalla.</p></article>
-          <article class="step-card" data-reveal data-reveal-delay="2"><h3>Ajusta recursos</h3><p>RAM, CPU y almacenamiento con una estimación instantánea.</p></article>
-          <article class="step-card" data-reveal data-reveal-delay="3"><h3>Abre tu panel</h3><p>Gestiona consola, archivos y recursos desde Pterodactyl.</p></article>
-        </div>
+    <section class="section" id="activity">
+      <div class="container activity-grid">
+        <div data-reveal><span class="label">Provisioning flow</span><h2>Una secuencia que el usuario puede entender.</h2><p class="lead">La interfaz representa el flujo sin fingir que el HTML está creando servidores por sí solo.</p><a class="button ghost" href="planes.html#configurador">Abrir configurador</a></div>
+        <div class="activity-console" data-reveal data-reveal-delay="1"><div class="activity-head"><span>deployment.log</span><b>STATIC PREVIEW</b></div><div id="homeLiveFeed"></div></div>
       </div>
     </section>
 
     <section class="section soft border-top">
-      <div class="container showcase-grid">
-        <div data-reveal>
-          <span class="label">Control</span>
-          <h2 style="font-size:clamp(36px,4.7vw,58px);line-height:1.02;letter-spacing:-.06em;margin:12px 0 14px">Tu servidor, sin perderte en el panel.</h2>
-          <p class="lead" style="font-size:15px">La nueva web explica qué obtiene el usuario al entrar a Pterodactyl, en vez de limitarse a nombrarlo.</p>
-          <div class="feature-list">
-            <div class="feature-row"><span class="feature-check">✓</span><div><strong>Consola en tiempo real</strong><span>Inicia, detén y revisa la actividad del servidor.</span></div></div>
-            <div class="feature-row"><span class="feature-check">✓</span><div><strong>Archivos, backups y schedules</strong><span>Las funciones del panel quedan visibles desde el discurso de producto.</span></div></div>
-            <div class="feature-row"><span class="feature-check">✓</span><div><strong>Una interfaz coherente</strong><span>Minecraft y VPS comparten la misma narrativa visual.</span></div></div>
-          </div>
-        </div>
-        <div class="panel-mock" data-reveal data-reveal-delay="1" aria-hidden="true">
-          <div class="panel-bar"><i></i><i></i><i></i><span>panel.nexusnodes.lat</span></div>
-          <div class="panel-layout">
-            <aside class="panel-side"><strong>Server</strong><div class="panel-nav-item active"><i></i>Console</div><div class="panel-nav-item"><i></i>Files</div><div class="panel-nav-item"><i></i>Databases</div><div class="panel-nav-item"><i></i>Schedules</div><div class="panel-nav-item"><i></i>Backups</div><div class="panel-nav-item"><i></i>Network</div></aside>
-            <div class="panel-main"><div class="panel-server-head"><h4>survival-01</h4><span>● RUNNING</span></div><div class="panel-stats"><div class="panel-stat"><small>CPU</small><strong>38.4%</strong></div><div class="panel-stat"><small>Memory</small><strong>5.2 GB</strong></div><div class="panel-stat"><small>Disk</small><strong>12.8 GB</strong></div></div><div class="panel-console"><span class="purple">[Nexus]</span> Starting server container...<br><span class="green">[Server]</span> Java 21 detected<br>[Paper] Loading libraries, please wait...<br>[Server thread/INFO]: Preparing spawn area<br><span class="green">[Server thread/INFO]: Done (4.213s)! For help, type "help"</span><br><br>&gt; <span class="purple">list</span><br>There are 17 of a max of 50 players online.</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-heading center" data-reveal><span class="label">Infraestructura</span><h2>Hardware explicado, no escondido.</h2><p>El usuario puede comparar claramente las opciones de rendimiento que ya existían en la web original.</p></div>
-        <div class="hardware-grid">
-          <article class="hardware-main" data-reveal><div class="cpu-chip"><div><b>Ryzen 9</b><span>5950X · MIA-02</span></div></div><div class="hardware-copy"><span class="kicker">Performance node</span><h3>Frecuencia cuando importa.</h3><p>El nodo Ryzen 9 5950X se presenta como la opción de mayor rendimiento por núcleo del catálogo actual, ideal para cargas de Minecraft más exigentes.</p></div></article>
-          <div class="hardware-side"><article class="hardware-card" data-reveal data-reveal-delay="1"><span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/></svg></span></span><h3>Recursos transparentes</h3><p>RAM, CPU y almacenamiento quedan expuestos en el configurador en vez de esconderse tras nombres ambiguos.</p></article><article class="hardware-card" data-reveal data-reveal-delay="2"><span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 7.7 7.5 9.5 4.3-1.8 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></span></span><h3>Arquitectura segura</h3><p>La cuenta ya no contiene un token CSRF exportado ni pretende registrar usuarios desde HTML sin backend.</p></article></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft border-top">
-      <div class="container network-section-grid">
-        <div data-reveal>
-          <div class="section-heading compact"><span class="label">Network</span><h2>Más cerca de tus jugadores.</h2><p>El catálogo actual se convierte en una experiencia de infraestructura: región, hardware y precio se entienden de un vistazo.</p></div>
-          <div class="region-list">
-            <div class="region-row"><span class="region-flag">🇺🇸</span><div><strong>Miami · Florida</strong><small>Ryzen 7 3700X + Ryzen 9 5950X</small></div><span class="region-code">MIA-01/02</span></div>
-            <div class="region-row"><span class="region-flag">🇺🇸</span><div><strong>Dallas · Texas</strong><small>Intel · nodo value</small></div><span class="region-code">DAL-01</span></div>
-            <div class="region-row"><span class="region-flag">🇨🇱</span><div><strong>Santiago · Chile</strong><small>Intel · presencia LATAM</small></div><span class="region-code">SCL-01</span></div>
-            <div class="region-row"><span class="region-flag">🇦🇷</span><div><strong>Argentina</strong><small>Intel Xeon · presencia regional</small></div><span class="region-code">ARG-01</span></div>
-          </div>
-          <a class="product-link" href="network.html">Explorar todos los nodos <span class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-        </div>
-        <div class="abstract-map" data-reveal data-reveal-delay="1" aria-hidden="true"><span class="map-orbit one"></span><span class="map-orbit two"></span><span class="map-beam b1"></span><span class="map-beam b2"></span><span class="map-beam b3"></span><span class="map-pin p1" data-code="DAL-01"></span><span class="map-pin p2" data-code="MIA-01"></span><span class="map-pin p3" data-code="MIA-02"></span><span class="map-pin p4" data-code="SCL-01"></span><span class="map-pin p5" data-code="ARG-01"></span></div>
-      </div>
-    </section>
-
-    <section class="section">
       <div class="container faq-grid">
-        <aside class="faq-aside" data-reveal><span class="label">FAQ</span><h2 style="font-size:40px;letter-spacing:-.055em;margin:12px 0 0">Lo importante, explicado.</h2><p>Preguntas que deberían resolverse antes de que el usuario llegue a soporte.</p><a class="button ghost compact" href="cuenta.html#support">Necesito ayuda</a></aside>
+        <aside class="faq-aside" data-reveal><span class="label">FAQ</span><h2>Lo importante, antes del checkout.</h2><p>La web debe resolver dudas del producto antes de enviarlas a soporte.</p><a class="button ghost compact" href="contacto.html">Contacto</a></aside>
         <div class="faq-list" data-reveal data-reveal-delay="1">
-          <div class="faq-item" data-faq><button aria-expanded="false"><span>¿Minecraft Java y Bedrock están contemplados?</span><span>+</span></button><div class="faq-answer"><div><p>Sí. La propuesta original ya indicaba soporte para Java y Bedrock. Esta versión lo hace visible desde el hero y la página de Minecraft.</p></div></div></div>
-          <div class="faq-item" data-faq><button aria-expanded="false"><span>¿Los precios del configurador son definitivos?</span><span>+</span></button><div class="faq-answer"><div><p>El precio base por GB usa los valores del sitio original. El recargo de CPU y almacenamiento adicional está parametrizado como estimación en <code>assets/js/data.js</code> para que puedas ajustarlo a tu facturación real.</p></div></div></div>
-          <div class="faq-item" data-faq><button aria-expanded="false"><span>¿La cuenta ya crea usuarios en Pterodactyl?</span><span>+</span></button><div class="faq-answer"><div><p>La interfaz está lista, pero el registro seguro necesita un backend. Se eliminó el falso flujo estático con CSRF fijo del export original. El README incluye el contrato de integración recomendado.</p></div></div></div>
-          <div class="faq-item" data-faq><button aria-expanded="false"><span>¿La web necesita React o Next.js?</span><span>+</span></button><div class="faq-answer"><div><p>No para esta etapa. El rework sigue siendo HTML, CSS y JavaScript sin build step, por lo que puedes desplegarlo en prácticamente cualquier hosting estático.</p></div></div></div>
+          <div class="faq-item" data-faq><button aria-expanded="false"><span>¿El Smart Sizer garantiza el rendimiento?</span><span>+</span></button><div class="faq-answer"><div><p>No. Propone un punto de partida según tipo de carga, jugadores y complejidad. El comportamiento real depende del software, plugins/mods, configuración y carga.</p></div></div></div>
+          <div class="faq-item" data-faq><button aria-expanded="false"><span>¿Los milisegundos de latencia son reales?</span><span>+</span></button><div class="faq-answer"><div><p>No mostramos cifras de ping sin una fuente medible. Route Planner usa proximidad geográfica orientativa y recomienda validar la región con test IP o Looking Glass cuando se conecte.</p></div></div></div>
+          <div class="faq-item" data-faq><button aria-expanded="false"><span>¿La cuenta ya provisiona en Pterodactyl?</span><span>+</span></button><div class="faq-answer"><div><p>La UI está preparada, pero provisioning y creación de cuentas deben pasar por backend. El README incluye el contrato recomendado para integrar esa capa de forma segura.</p></div></div></div>
+          <div class="faq-item" data-faq><button aria-expanded="false"><span>¿Hace falta React o un build system?</span><span>+</span></button><div class="faq-answer"><div><p>No. La v3 continúa siendo HTML, CSS y JavaScript estático, con progressive enhancement y sin build obligatorio.</p></div></div></div>
         </div>
       </div>
     </section>
 
-    <section class="section tight">
-      <div class="container cta-card" data-reveal>
-        <div class="cta-inner"><div class="cta-copy"><span class="label">Deploy</span><h2>Tu próximo servidor empieza aquí.</h2><p>Compara región y recursos, obtén una estimación y pasa al flujo de cuenta sin salir del mismo lenguaje visual.</p></div><div class="cta-actions"><a class="button primary" href="planes.html#configurador">Configurar servidor</a><a class="button ghost" href="cuenta.html">Abrir cuenta</a></div></div>
-      </div>
-    </section>
+    <section class="section tight"><div class="container cta-card cta-v3" data-reveal><div class="cta-inner"><div class="cta-copy"><span class="label">NexusNodes</span><h2>Encuentra tu punto de partida.</h2><p>Tipo de carga, audiencia, región y recursos: el configurador convierte esas decisiones en una estimación compartible.</p></div><div class="cta-actions"><a class="button primary" href="planes.html#smart-sizing">Smart Sizer</a><a class="button ghost" href="network.html">Node Explorer</a></div></div></div></section>
   </main>
-
   <div data-site-footer></div>
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/data.js"></script><script src="assets/js/app.js"></script><script src="assets/js/home.js"></script>
 </body>
 </html>

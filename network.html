@@ -2,35 +2,68 @@
 <html lang="es">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#05060a">
-  <meta name="description" content="Network NexusNodes: compara ubicaciones, hardware y tarifas de los nodos disponibles en Norteamérica y LATAM."><meta property="og:title" content="Network — NexusNodes"><meta property="og:description" content="Ubicaciones, hardware y precios de la infraestructura NexusNodes."><meta property="og:type" content="website"><meta property="og:url" content="https://nexusnodes.lat/network.html">
-  <link rel="canonical" href="https://nexusnodes.lat/network.html"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css">
+  <meta name="description" content="Nexus Network: compara nodos en Dallas, Miami, Santiago y Argentina por hardware, región y tarifa base.">
+  <meta property="og:title" content="Network — NexusNodes"><meta property="og:description" content="Node Explorer, recomendaciones geográficas y comparador de infraestructura."><meta property="og:type" content="website"><meta property="og:image" content="https://nexusnodes.lat/assets/Modelado.png"><meta property="og:url" content="https://nexusnodes.lat/network.html">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nexusnodes.lat/assets/Modelado.png">
+  <link rel="canonical" href="https://nexusnodes.lat/network.html"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css">
   <title>Network — NexusNodes</title>
 </head>
 <body data-page="network">
   <div data-site-header></div>
   <main id="main">
-    <section class="page-hero center">
-      <div class="container" data-reveal><span class="status-badge"><span class="status-dot"></span> 5 nodos configurados</span><h1 class="display">Tu servidor,<br><span class="gradient">donde debe estar.</span></h1><p class="lead">Compara ubicación, hardware y tarifa antes de contratar. Sin esconder la región detrás de nombres de plan.</p><div class="hero-actions" style="justify-content:center"><a class="button primary" href="planes.html#configurador">Abrir configurador</a><a class="button ghost" href="#locations">Ver nodos</a></div></div>
-    </section>
-
-    <section class="section soft border-top">
-      <div class="container network-section-grid">
-        <div data-reveal><div class="section-heading compact"><span class="label">Topología</span><h2>Norteamérica + LATAM.</h2><p>La visualización es deliberadamente abstracta: muestra la relación entre nodos sin inventar métricas de latencia que el sitio original no proporcionaba.</p></div><div class="region-list" id="networkRegionList"></div></div>
-        <div class="abstract-map" data-reveal data-reveal-delay="1"><span class="map-orbit one"></span><span class="map-orbit two"></span><span class="map-beam b1"></span><span class="map-beam b2"></span><span class="map-beam b3"></span><span class="map-pin p1" data-code="DAL-01"></span><span class="map-pin p2" data-code="MIA-01"></span><span class="map-pin p3" data-code="MIA-02"></span><span class="map-pin p4" data-code="SCL-01"></span><span class="map-pin p5" data-code="ARG-01"></span></div>
+    <section class="page-hero network-hero-v3">
+      <div class="container wide network-hero-grid">
+        <div data-reveal><span class="status-badge"><span class="status-dot"></span> 5 nodos · 4 áreas del catálogo</span><h1 class="display">El nodo correcto<br><span class="gradient">antes que el ping inventado.</span></h1><p class="lead">Compara hardware, precio y ubicación. NexusNodes no muestra milisegundos que no puede medir: el asesor geográfico da un punto de partida y deja la prueba real para un Looking Glass conectado.</p><div class="hero-actions"><a class="button primary" href="#node-explorer">Abrir Node Explorer</a><a class="button ghost" href="planes.html#configurador">Configurar recursos</a></div></div>
+        <div class="network-globe" data-reveal data-reveal-delay="1" aria-label="Mapa conceptual de nodos NexusNodes">
+          <div class="globe-ring r1"></div><div class="globe-ring r2"></div><div class="globe-ring r3"></div><div class="globe-axis"></div>
+          <button class="globe-node dal" type="button" data-map-node="us-dal-intel"><i></i><span>DAL-01<small>Dallas</small></span></button>
+          <button class="globe-node mia" type="button" data-map-node="us-mia-r7"><i></i><span>MIA-01<small>Miami</small></span></button>
+          <button class="globe-node mia2" type="button" data-map-node="us-mia-r9"><i></i><span>MIA-02<small>Performance</small></span></button>
+          <button class="globe-node scl" type="button" data-map-node="cl-scl-intel"><i></i><span>SCL-01<small>Santiago</small></span></button>
+          <button class="globe-node arg" type="button" data-map-node="ar-xeon"><i></i><span>ARG-01<small>Argentina</small></span></button>
+          <div class="globe-center"><img src="assets/SinFondo.png" alt="" width="64" height="64"><span>NEXUS</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="locations">
-      <div class="container"><div class="section-heading" data-reveal><span class="label">Ubicaciones</span><h2>Cinco nodos. Cuatro regiones.</h2><p>Miami tiene dos opciones de hardware distintas. Eso ahora se ve como una decisión de infraestructura, no como dos tarjetas casi idénticas.</p></div><div class="location-cards" id="locationCards"></div></div>
+    <section class="section soft border-top" id="node-explorer">
+      <div class="container">
+        <div class="section-heading" data-reveal><span class="label">Node Explorer</span><h2>Cinco nodos. Una vista comparable.</h2><p>Selecciona un nodo y revisa su perfil sin saltar entre tarjetas.</p></div>
+        <div class="node-explorer" data-reveal><div class="node-explorer-list" id="nodeExplorerList"></div><article class="node-explorer-detail" id="nodeExplorerDetail"></article></div>
+      </div>
+    </section>
+
+    <section class="section" id="advisor">
+      <div class="container advisor-grid">
+        <div data-reveal><span class="label">Region Advisor</span><h2>¿Dónde está tu comunidad?</h2><p class="lead">Usamos proximidad geográfica como orientación. El resultado no pretende sustituir un test de red real.</p>
+          <div class="advisor-form"><label><span>Audiencia principal</span><select id="networkAudience"></select></label><label><span>Prioridad</span><select id="networkPriority"><option value="balanced">Equilibrio / coste</option><option value="performance">Rendimiento por núcleo</option></select></label></div>
+        </div>
+        <aside class="advisor-result" id="networkAdviceResult" data-reveal data-reveal-delay="1"></aside>
+      </div>
+    </section>
+
+    <section class="section soft border-top" id="locations">
+      <div class="container"><div class="section-heading center" data-reveal><span class="label">Locations</span><h2>Hardware, región y precio juntos.</h2><p>Las tarjetas usan exactamente la misma fuente de datos que el configurador.</p></div><div class="location-cards" id="locationCards"></div></div>
+    </section>
+
+    <section class="section">
+      <div class="container"><div class="section-heading center" data-reveal><span class="label">Comparison</span><h2>Todo el catálogo, sin marketing intermedio.</h2><p>Tarifa base por GB y perfil del nodo. La factura final depende de los recursos elegidos.</p></div><div class="compare-wrap" data-reveal><table class="compare-table"><thead><tr><th>Nodo</th><th>Procesador</th><th>Región</th><th>Minecraft</th><th>VPS</th><th>Perfil</th></tr></thead><tbody id="networkTable"></tbody></table></div></div>
     </section>
 
     <section class="section soft border-top">
-      <div class="container"><div class="section-heading center" data-reveal><span class="label">Comparación</span><h2>Todo el catálogo en una tabla.</h2><p>Tarifas tomadas de la web original y centralizadas en la nueva fuente de datos.</p></div><div class="compare-wrap" data-reveal><table class="compare-table"><thead><tr><th>Nodo</th><th>Procesador</th><th>Región</th><th>Minecraft</th><th>VPS</th><th>Perfil</th></tr></thead><tbody id="networkTable"></tbody></table></div></div>
+      <div class="container network-principles-grid">
+        <div class="section-heading" data-reveal><span class="label">Network design</span><h2>Qué debería añadirse cuando exista la fuente real.</h2><p>La interfaz ya deja espacio lógico para métricas reales sin falsificarlas hoy.</p></div>
+        <div class="network-principles">
+          <article data-reveal><span class="np-index">01</span><div><h3>Looking Glass</h3><p>Test IP/HTTP por nodo para medir ruta y latencia desde el cliente.</p></div><span class="np-status pending">Backend</span></article>
+          <article data-reveal data-reveal-delay="1"><span class="np-index">02</span><div><h3>Capacity API</h3><p>Stock y capacidad real para impedir órdenes hacia nodos saturados.</p></div><span class="np-status pending">Backend</span></article>
+          <article data-reveal data-reveal-delay="2"><span class="np-index">03</span><div><h3>Monitoring</h3><p>Uptime y degradaciones provenientes de observabilidad real, no de arrays estáticos.</p></div><span class="np-status pending">Backend</span></article>
+          <article data-reveal data-reveal-delay="3"><span class="np-index">04</span><div><h3>Routing evidence</h3><p>Datos de red que permitan justificar recomendaciones por país con mediciones.</p></div><span class="np-status ready">UI ready</span></article>
+        </div>
+      </div>
     </section>
 
-    <section class="section"><div class="container"><div class="section-heading center" data-reveal><span class="label">Elegir bien</span><h2>La mejor región depende de tu comunidad.</h2><p>No mostramos milisegundos inventados. La recomendación se basa en proximidad geográfica y perfil de hardware; para producción conviene añadir un Looking Glass o test IP real.</p></div><div class="feature-cards"><article class="feature-card" data-reveal><span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18"/></svg></span></span><h3>Tu audiencia primero</h3><p>Selecciona una región próxima al mayor porcentaje de tus jugadores.</p></article><article class="feature-card" data-reveal data-reveal-delay="1"><span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><path d="M4 14a8 8 0 1 1 16 0"/><path d="m12 14 4-4"/><path d="M6.5 17.5h11"/></svg></span></span><h3>Luego el hardware</h3><p>Para Minecraft exigente, la frecuencia por núcleo puede importar más que elegir solo por precio.</p></article><article class="feature-card" data-reveal data-reveal-delay="2"><span class="icon-box"><span class="icon"><svg viewBox="0 0 24 24"><path d="M5 18 9 6h6l4 12M7 14h10"/></svg></span></span><h3>Finalmente el coste</h3><p>El configurador mezcla región y recursos para dar una estimación comparable.</p></article></div></div></section>
-
-    <section class="section tight"><div class="container cta-card" data-reveal><div class="cta-inner"><div class="cta-copy"><span class="label">Network</span><h2>Ya sabes dónde. Ahora configura cuánto.</h2><p>Pasa del nodo al plan sin volver a empezar el flujo.</p></div><div class="cta-actions"><a class="button primary" href="planes.html#configurador">Configurar recursos</a><a class="button ghost" href="minecraft.html">Ver Minecraft</a></div></div></div></section>
+    <section class="section tight"><div class="container cta-card" data-reveal><div class="cta-inner"><div class="cta-copy"><span class="label">Network</span><h2>Elegiste dónde. Ahora decide cuánto.</h2><p>Pasa el nodo al configurador y ajusta RAM, CPU y almacenamiento sin reiniciar el flujo.</p></div><div class="cta-actions"><a class="button primary" href="planes.html#configurador">Configurar recursos</a><a class="button ghost" href="status.html">Ver status</a></div></div></div></section>
   </main>
   <div data-site-footer></div>
   <script src="assets/js/data.js"></script><script src="assets/js/app.js"></script><script src="assets/js/network.js"></script>
