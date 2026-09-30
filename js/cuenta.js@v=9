@@ -1,0 +1,21 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".account-tabs button");
+  const login = document.getElementById("tab-login");
+  const register = document.getElementById("tab-register");
+  if (!tabs.length || !login || !register) return;
+
+  tabs.forEach(b => {
+    b.addEventListener("click", () => {
+      tabs.forEach(x => x.classList.remove("active"));
+      b.classList.add("active");
+      login.style.display = b.dataset.tab === "login" ? "" : "none";
+      register.style.display = b.dataset.tab === "register" ? "" : "none";
+    });
+  });
+
+  // Si el servidor pidió abrir registro
+  if (document.body.dataset.tab === "register") {
+    const btn = document.querySelector('[data-tab="register"]');
+    if (btn) btn.click();
+  }
+});

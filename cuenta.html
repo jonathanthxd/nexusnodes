@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cuenta — NexusNodes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css@v=9.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="assets/SinFondo.png" alt="NexusNodes" width="36" height="36">
+      <span class="brand-text">Nexus<span>Nodes</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="planes.html">Planes</a>
+      <a href="planes/minecraft.html">Minecraft</a>
+      <a href="planes/vps.html">VPS</a>
+      <a href="planes/ubicaciones.html">Ubicaciones</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn secondary" href="cuenta.html">Iniciar sesión</a>
+      <a class="btn primary" href="cuenta.html">Crear cuenta</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="label">CUENTA NEXUSNODES</span>
+      <h1>Tu acceso.<br><span>Tu panel Pterodactyl.</span></h1>
+      <p>Registrate una vez: se crea el usuario en Pterodactyl. Las mismas credenciales sirven para Minecraft y VPS.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:10px">
+    <div class="container">
+      <div class="account-box">
+        <h2 style="margin:0 0 6px;font-size:22px">Bienvenido</h2>
+        <p style="color:var(--muted);font-size:14px;margin:0 0 18px">
+          Creá tu cuenta o iniciá sesión. El registro crea el usuario en Pterodactyl.        </p>
+
+        
+                  <div class="account-tabs">
+            <button type="button" data-tab="login" class="active">Iniciar sesión</button>
+            <button type="button" data-tab="register">Crear cuenta</button>
+          </div>
+
+          <div id="tab-login">
+            <form class="form" method="post" action="cuenta.html">
+              <input type="hidden" name="action" value="login">
+              <input type="hidden" name="csrf" value="7e8375814057459f4aba4c076cfdd13639c35969ce5f1e431cc1421f9521d49a">
+              <label>Correo
+                <input type="email" name="email" required autocomplete="email">
+              </label>
+              <label>Contraseña
+                <input type="password" name="password" required autocomplete="current-password">
+              </label>
+              <button class="button primary" type="submit">Iniciar sesión</button>
+            </form>
+          </div>
+
+          <div id="tab-register" style="display:none">
+            <form class="form" method="post" action="cuenta.html">
+              <input type="hidden" name="action" value="register">
+              <input type="hidden" name="csrf" value="7e8375814057459f4aba4c076cfdd13639c35969ce5f1e431cc1421f9521d49a">
+              <label>Nombre
+                <input type="text" name="first_name" required minlength="2" autocomplete="given-name">
+              </label>
+              <label>Apellido
+                <input type="text" name="last_name" required minlength="2" autocomplete="family-name">
+              </label>
+              <label>Correo
+                <input type="email" name="email" required autocomplete="email">
+              </label>
+              <label>Usuario del panel (Pterodactyl)
+                <input type="text" name="username" required minlength="3" maxlength="30" pattern="[A-Za-z0-9._-]+" autocomplete="username">
+              </label>
+              <label>Contraseña
+                <input type="password" name="password" required minlength="8" autocomplete="new-password">
+              </label>
+              <label>Repetir contraseña
+                <input type="password" name="password_confirm" required minlength="8" autocomplete="new-password">
+              </label>
+              <button class="button primary" type="submit">Crear cuenta en Pterodactyl</button>
+            </form>
+          </div>
+              </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <div class="footer-brand">
+      <img class="brand-logo" src="assets/SinFondo.png" alt="" width="28" height="28">
+      <span>NexusNodes</span>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Inicio</a>
+      <a href="planes.html">Planes</a>
+      <a href="https://panel.nexusnodes.lat" target="_blank" rel="noopener">Panel</a>
+    </div>
+  </div>
+</footer>
+<script src="js/cuenta.js@v=9"></script>
+</body>
+</html>
