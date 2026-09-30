@@ -1,180 +1,185 @@
-# NexusNodes v3 — Backend Integration Contract
+# NexusNodes v4 — Integration Blueprint
 
-Este documento define una frontera recomendada entre la web pública y los sistemas privados. Es una guía de integración, no un backend implementado.
+La UI ya está preparada para trabajar como frontend de una plataforma real. Esta guía define el boundary recomendado.
 
-## Principio
-
-El navegador expresa **intención**. El servidor decide y valida **verdad**.
-
-Nunca confíes en:
-
-- precio calculado en JavaScript;
-- node ID enviado por el cliente sin validar stock;
-- RAM/CPU/storage fuera de límites server-side;
-- estado de pago enviado por el cliente;
-- IDs de Pterodactyl enviados como autoridad;
-- roles/permisos contenidos en el frontend.
-
-## 1. Catálogo público
-
-```http
-GET /api/catalog
-```
-
-Respuesta sugerida:
-
-```json
-{
-  "version": "2026-09-30",
-  "products": ["minecraft", "vps"],
-  "nodes": [],
-  "pricing": {},
-  "limits": {}
-}
-```
-
-Esto permite sustituir gradualmente `assets/js/data.js` por datos de billing sin rehacer la UI.
-
-## 2. Quote autoritativo
-
-```http
-POST /api/quotes
-Content-Type: application/json
-```
-
-```json
-{
-  "product": "minecraft",
-  "node": "us-mia-r7",
-  "ram": 8,
-  "cores": 2,
-  "storage": 40,
-  "workload": "plugins"
-}
-```
-
-El backend debe devolver:
-
-```json
-{
-  "quote_id": "...",
-  "currency": "USD",
-  "subtotal": 0,
-  "tax": 0,
-  "total": 0,
-  "expires_at": "...",
-  "node": "us-mia-r7",
-  "capacity_confirmed": true
-}
-```
-
-El checkout debería usar `quote_id`, no un total enviado por query string.
-
-## 3. Registro
-
-```http
-POST /api/auth/register
-```
-
-La política de password, verificación de email, rate limit y creación de identidad pertenecen al servidor.
-
-## 4. Crear orden
-
-```http
-POST /api/orders
-Authorization: session
-Idempotency-Key: <uuid>
-```
-
-Ejemplo:
-
-```json
-{
-  "quote_id": "...",
-  "payment_method": "..."
-}
-```
-
-El backend vuelve a validar quote, expiración, stock y usuario antes del pago.
-
-## 5. Pago
-
-- Crea sesiones/intenciones de pago server-side.
-- Verifica webhooks con la firma del proveedor.
-- No provisiona por el redirect del navegador.
-- Provisiona únicamente después de un evento de pago validado/idempotente.
-
-## 6. Provisioning / Pterodactyl
-
-Flujo recomendado:
+## 1. Flujo de compra
 
 ```text
-Order paid
-   ↓
-Provisioning job
-   ↓
-Capacity lock / node selection
-   ↓
-Pterodactyl Application API (server-side)
-   ↓
-Persist external server id
-   ↓
-Order active
+Pricing UI
+   │ intent
+   ▼
+POST /api/quote
+   │ validated catalog quote
+   ▼
+Billing Service
+   │ authoritative price + tax + stock
+   ▼
+Checkout / Payment
+   │ signed webhook
+   ▼
+Order State Machine
+   │ paid + idempotency key
+   ▼
+Provisioning Worker
+   │ server-side credentials
+   ▼
+Pterodactyl / Hypervisor
 ```
 
-La Application API Key vive únicamente en secrets del backend.
+### Regla crítica
 
-## 7. Capacity
+Nunca provisionar porque el navegador diga `paid=true` ni porque envíe un `total`.
 
-```http
-GET /api/capacity
+## 2. Quote authority
+
+`src/lib/pricing.ts` es únicamente una implementación de catálogo para UX.
+
+Producción debería tener algo equivalente a:
+
+```text
+POST /api/checkout/quote
+→ authenticate/anonymous session
+→ validate product
+→ validate node
+→ validate stock/capacity
+→ load authoritative price rules
+→ apply tax/discount/currency
+→ create immutable quote id
+→ return signed/opaque quote reference
 ```
 
-Una respuesta pública puede limitarse a estados seguros:
+El checkout trabaja con el `quote_id`, no con números editables por query string.
 
-```json
-{
-  "nodes": [
-    {"id":"us-mia-r7","status":"available"},
-    {"id":"us-mia-r9","status":"limited"}
-  ]
-}
+## 3. Autenticación
+
+La UI de `/account` es deliberadamente backend-agnostic.
+
+Opciones:
+
+- Auth.js
+- Clerk
+- Supabase Auth
+- sistema propio con cookies HttpOnly
+
+Si usas un sistema propio:
+
+- `Secure`, `HttpOnly`, `SameSite=Lax/Strict` según flujo;
+- rotación de sesión;
+- rate limit en login/register;
+- verificación de email si aplica;
+- nunca guardar contraseña en logs.
+
+## 4. Pterodactyl
+
+La Application API Key debe vivir únicamente en servidor/worker.
+
+Nunca:
+
+```text
+NEXT_PUBLIC_PTERODACTYL_KEY=...
 ```
 
-No publiques métricas internas sensibles si no hacen falta para comprar.
+Sí:
 
-## 8. Status
-
-```http
-GET /api/status
+```text
+PTERODACTYL_APPLICATION_API_KEY=...
 ```
 
-Endpoint público read-only y cacheable. Puede agregar monitorización sin exponer tokens del proveedor.
+Y solo consumida desde código server-only.
 
-## 9. Looking Glass
+### Provisioning recomendado
 
-Idealmente cada región expone un destino de test no sensible:
+1. Crear/obtener customer.
+2. Crear orden idempotente.
+3. Confirmar pago desde webhook firmado.
+4. Resolver node/egg/allocation desde backend.
+5. Crear usuario Pterodactyl si no existe.
+6. Crear server.
+7. Guardar IDs externos.
+8. Marcar orden `provisioned`.
+9. Notificar al usuario.
 
-```json
-{
-  "node": "us-mia-r7",
-  "test_host": "...",
-  "http_probe": "..."
-}
+## 5. Idempotencia
+
+Cada webhook de pago y job de provisioning necesita una clave idempotente.
+
+Ejemplo conceptual:
+
+```text
+payment_event_id UNIQUE
+order_id UNIQUE
+external_server_id UNIQUE
 ```
 
-No inventes latencia. Muéstrala únicamente después de una medición real y deja claro que la ruta puede variar.
+Un retry nunca debe crear dos servidores.
 
-## 10. Seguridad mínima
+## 6. Capacity / Stock
 
-- TLS obligatorio.
-- Cookies `Secure`, `HttpOnly`, `SameSite` según arquitectura.
-- CSRF para flujos basados en cookies cuando aplique.
-- Rate limit y anti-abuse.
-- Validación de schema server-side.
-- Idempotency en órdenes/pagos/provisioning.
-- Secrets solo en servidor.
-- Logs sin passwords/tokens.
-- Webhooks con firma.
-- CSP/headers de seguridad en CDN/origin.
-- Auditoría de permisos del panel y API keys con mínimo privilegio.
+No usar `status: operational` para inferir stock.
+
+Separar:
+
+```text
+health       → ¿el nodo responde?
+capacity     → ¿hay RAM/CPU/disk disponible?
+commerce     → ¿se permite vender este SKU?
+```
+
+La web puede consumir una API read-only agregada.
+
+## 7. Observabilidad
+
+`/api/status` debe reemplazarse con un agregador server-side.
+
+Fuentes posibles:
+
+- Uptime Kuma
+- Better Stack
+- Prometheus
+- health checks internos
+- billing capacity
+
+No expongas tokens de estas plataformas al navegador.
+
+## 8. Looking Glass
+
+Para latencia real:
+
+- endpoint HTTP por región;
+- test IP por nodo;
+- medición cliente con varias muestras;
+- mediana, no solo una petición;
+- aclarar que browser latency no equivale exactamente a Minecraft TCP latency.
+
+## 9. Data model mínimo
+
+```text
+users
+customers
+catalog_products
+catalog_nodes
+price_rules
+quotes
+orders
+payments
+services
+external_resources
+provisioning_jobs
+incidents
+```
+
+## 10. Estados de orden sugeridos
+
+```text
+draft
+quoted
+payment_pending
+paid
+provisioning
+active
+failed
+cancelled
+refunded
+```
+
+No mezclar estado de pago con estado de provisioning.

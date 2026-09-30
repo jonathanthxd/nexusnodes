@@ -1,55 +1,81 @@
-# NexusNodes — Changelog
+# Changelog
 
-## 3.0.0 — Super Update
+## 4.0.0 — Biggest Update / Next.js
+
+### Arquitectura
+
+- Migración total de HTML/CSS/JS estático a Next.js App Router.
+- TypeScript estricto.
+- Server Components por defecto.
+- Client Components aislados para interacción.
+- Route Handlers para quote y status.
+- Dynamic routes para nodos.
+- Metadata, robots, sitemap y manifest mediante convenciones Next.js.
+- Standalone output para self-hosting.
+- Error boundary, loading UI y 404 nativos.
 
 ### Diseño / UX
-- Nueva capa visual v3 manteniendo la identidad oscura violeta/azul.
-- Home y heroes de producto profundizados.
-- Nexus Launchpad interactivo.
-- Command Palette con Ctrl/⌘ + K.
-- Barra de progreso, microinteracciones, tilt, toasts y nuevos estados UI.
-- Mejoras específicas de mobile y responsive.
-- Rework visual de la tarjeta de servidor Minecraft.
 
-### Producto
-- Smart Sizer para Minecraft/VPS.
-- Minecraft Sizer por workload, jugadores e intensidad.
-- VPS Deploy Composer por distro y workload.
-- Node Explorer interactivo.
-- Region Advisor sin latencia ficticia.
-- Comparación de coste por nodo.
-- Configuraciones guardables y compartibles.
-- Order context persistente entre configurador y cuenta.
-- Pre-sales Brief Builder local.
+- Home reconstruida con Nexus Launchpad.
+- Product bento Minecraft/VPS.
+- Control plane visual.
+- Network visual interactiva.
+- Command palette global `Ctrl/⌘ + K`.
+- Header sticky + navegación móvil.
+- Responsive completo y reduced motion.
 
-### Datos / técnica
-- Catálogo, workloads, audiencias y presets centralizados en `data.js`.
-- Recalculo de estimación desde parámetros conocidos.
-- URLs compartibles robustas fuera de HTTP durante testing.
-- Progressive enhancement y reduced-motion.
-- PWA icons 192/512 + Apple Touch Icon.
-- OpenGraph/Twitter Card ampliado.
-- JSON-LD Organization/WebSite en Home.
-- Documentación de integración y seguridad ampliada.
+### Minecraft
 
-### QA
-- Scripts validados sintácticamente.
-- Referencias locales comprobadas.
-- 10 rutas renderizadas en headless browser.
-- Desktop 1440 px + mobile 390 px.
-- Sin errores JS ni overflow horizontal en la pasada final.
+- Página dedicada nueva.
+- Minecraft Sizer por workload, jugadores, audiencia y carga pesada.
+- Software matrix.
+- Operations feature set.
+- Flujo visual de migración.
 
-## 2.0.0
+### VPS
 
-- Reescritura visual completa.
-- Design system unificado.
-- Home reconstruida.
-- Nuevas páginas Minecraft, VPS, Network y Status.
-- Pricing/configurator reescrito.
-- CPU y storage dejan de ser controles sin efecto.
-- Datos de nodos centralizados.
-- Navegación móvil real.
-- Cuenta rediseñada y flujo inseguro del HTML original retirado.
-- SEO/OG/manifest/sitemap/404 añadidos.
-- Accesibilidad y reduced-motion añadidos.
-- Responsive completo.
+- Deploy Composer por distro, workload y nodo.
+- Use-case matrix.
+- Arquitectura frontend → billing → provisioning.
+
+### Network
+
+- Node Explorer.
+- Region Advisor.
+- Fichas dinámicas `/network/[node]`.
+- Tabla comparativa.
+- Bloques preparados para Looking Glass, health checks y capacity API.
+
+### Pricing
+
+- Smart Sizer.
+- Configurador RAM/CPU/NVMe/nodo.
+- Breakdown de coste.
+- Guardado local y links compartibles.
+- Validación server-side mediante `/api/quote`.
+- Order context hacia `/account`.
+
+### Cuenta
+
+- Login/register UX.
+- Password strength.
+- Order context recalculado.
+- Sin secretos ni provisioning desde el navegador.
+
+### Dashboard Demo
+
+- Nuevo concepto `Nexus Control`.
+- Overview, Console, Files, Backups y Schedules interactivos.
+- Estado Start/Restart/Stop simulado.
+
+### Status
+
+- `/api/status` demo.
+- UI explícitamente diferenciada de observabilidad real.
+
+### Seguridad / Calidad
+
+- Security headers básicos.
+- `poweredByHeader: false`.
+- Configuraciones y catálogo tipados.
+- No se confía en precio enviado por query string.

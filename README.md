@@ -1,156 +1,142 @@
-# NexusNodes v3 — Super Update
+# NexusNodes v4 — Biggest Update / Next.js Edition
 
-NexusNodes v3 convierte la base estática del proyecto en una web de hosting mucho más cercana a un producto real: visualmente más profunda, con configuradores útiles, datos centralizados y una separación clara entre la UI pública y las operaciones que deben vivir en backend.
+NexusNodes v4 reconstruye por completo la entrega v3 sobre **Next.js 16.3 + React 19.3 + TypeScript**. Ya no es una colección de páginas HTML: ahora es una aplicación con App Router, Server Components, Client Components aislados, Route Handlers, metadata nativa, rutas dinámicas y una base lista para integrarse con autenticación, billing, observabilidad y provisioning.
 
-La entrega sigue siendo deliberadamente ligera: **HTML + CSS + JavaScript vanilla, sin build step obligatorio**.
+## Stack
 
-## Qué incluye v3
-
-### Experiencia global
-
-- Design system oscuro/premium unificado.
-- Header sticky con navegación desktop y drawer móvil.
-- Command Palette con `Ctrl/⌘ + K`.
-- Barra de progreso de lectura.
-- Motion y microinteracciones con fallback y `prefers-reduced-motion`.
-- Toasts, estados de foco y progressive enhancement.
-- SEO base, OpenGraph, Twitter Card, JSON-LD, sitemap y manifest.
-- Iconos PWA 192/512 y Apple Touch Icon.
-- Responsive probado desde mobile hasta desktop wide.
-
-### Home
-
-- Hero completamente reconstruido.
-- **Nexus Launchpad** interactivo para Minecraft/VPS.
-- Cambio de producto, nodo y estimación visual.
-- Flujo hacia Smart Sizing/configurador.
-- Secciones de producto, control plane, principios de plataforma y network.
-- Consola visual de actividad como preview, sin fingir telemetría real.
-
-### Minecraft
-
-- Hero de producto dedicado.
-- Visual de servidor/players/TPS/RAM.
-- **Minecraft Sizer** por workload, jugadores e intensidad.
-- Recomendación inicial de RAM, CPU, storage y nodo.
-- Matriz de software: Paper, Fabric, Forge/NeoForge, Proxy, Bedrock y Java.
-- Flujo de migración y operación con Pterodactyl.
-
-### VPS
-
-- Hero tipo cloud console.
-- **Deploy Composer** por distribución + workload.
-- Ubuntu, Debian y AlmaLinux como opciones visuales configurables.
-- Workloads y presets de recursos.
-- Arquitectura visual de una instancia y comparación regional.
-
-### Network
-
-- Visual global de nodos.
-- **Node Explorer** interactivo.
-- Comparación de hardware/tarifas por nodo.
-- **Region Advisor** basado en audiencia y prioridad, sin inventar milisegundos de ping.
-- Separación explícita entre datos de catálogo y futuras señales live: Looking Glass, stock/capacity y monitoring.
-
-### Pricing / configurador
-
-- **Smart Sizer** para Minecraft y VPS.
-- Workload, audiencia, intensidad y jugadores.
-- Configurador manual de RAM, CPU, storage y nodo.
-- Presets y comparación de coste entre nodos.
-- Breakdown visual de coste.
-- Configuración guardable en `localStorage`.
-- Configuración compartible por URL.
-- Contexto de pedido preservado al pasar a Cuenta.
-- El precio se vuelve a calcular desde los parámetros conocidos; no se confía en el `estimate` enviado por query string.
-
-### Cuenta
-
-- UX de login y registro rehecha.
-- Order context visible cuando se llega desde el configurador.
-- Password strength meter.
-- Login estático redirige al panel oficial sin procesar la contraseña en esta web.
-- Registro visual listo para conectarse a un backend seguro.
-
-### Status
-
-- Vista de servicios y nodos.
-- Señalización explícita de que el estado actual es manual/configurado.
-- Arquitectura visual preparada para sustituirse por una API read-only de observabilidad.
-
-### Contacto
-
-- Rutas claras para cliente, compra y necesidades especiales.
-- **Pre-sales Brief Builder** local: genera un resumen copiable sin transmitir datos.
+- Next.js 16.3.x — App Router
+- React 19.3
+- TypeScript estricto
+- CSS propio sin Tailwind ni librerías UI
+- `next/image` para assets
+- Server Components por defecto
+- Client Components solo para navegación, configuradores y demos
+- `output: "standalone"` para self-hosting / Docker
 
 ## Páginas
 
 ```text
-index.html       Home
-minecraft.html   Minecraft Hosting
-vps.html         VPS
-network.html     Network / Nodes
-planes.html      Smart Sizer + Pricing + Configurator
-cuenta.html      Login / Register UX
-status.html      Status
-empresa.html     Empresa / arquitectura
-contacto.html    Contacto / pre-sales brief
-404.html         Error page
+/                       Home / Nexus Launchpad
+/minecraft              Minecraft Hosting + Minecraft Sizer
+/vps                    Cloud VPS + Deploy Composer
+/network                Node Explorer + Region Advisor
+/network/[node]         Ficha individual de cada nodo
+/pricing                Smart Sizer + configurador completo
+/account                Login / Register UX + order context
+/status                 Status frontend + /api/status
+/company                Principios + platform map
+/contact                Rutas de contacto + brief builder
+/dashboard-demo         Demo interactiva de Nexus Control
 ```
 
-## Estructura
+## API demo
 
-```text
-assets/
-  css/
-    styles.css
-  js/
-    data.js           Datos, precios, nodos, presets, workloads
-    app.js            Shell global, nav, command palette, motion, FAQ
-    home.js           Launchpad y home interactions
-    pricing.js        Smart Sizer + configurador + share/save
-    network.js        Node Explorer + Region Advisor
-    product-pages.js Minecraft Sizer + VPS Composer + renders comunes
-    account.js        Cuenta, contexto de pedido y password meter
-    status.js         Status renderer
-    contact.js        Pre-sales brief builder
-    company.js        Datos de empresa/network
-  favicon.svg
-  icon-192.png
-  icon-512.png
-  apple-touch-icon.png
-  SinFondo.png
-  Modelado.png
+### `POST /api/quote`
+
+Normaliza recursos y vuelve a calcular una estimación en servidor.
+
+Ejemplo:
+
+```json
+{
+  "product": "minecraft",
+  "nodeId": "us-mia-r7",
+  "ramGb": 8,
+  "cores": 2,
+  "storageGb": 40
+}
 ```
 
-## Probar localmente
+Importante: **esto sigue siendo lógica de catálogo**, no billing real. Producción debe consultar precios, stock, descuentos, impuestos y reglas desde la fuente de autoridad real.
 
-No hay dependencias de Node ni build obligatorio.
+### `GET /api/status`
+
+Devuelve el snapshot configurado de servicios/nodos. La propia UI marca que no es telemetría live.
+
+## Desarrollo
+
+Requisitos recomendados:
+
+- Node.js 20.9+ (Node 22 recomendado)
+- npm reciente
 
 ```bash
-cd NexusNodes
-python -m http.server 8080
+npm install
+npm run dev
 ```
 
-Después abre:
+Abre:
 
 ```text
-http://localhost:8080/
+http://localhost:3000
 ```
 
-Usar un servidor HTTP local es preferible a abrir `file://` porque reproduce mejor el entorno de producción.
+Build:
 
-## Fuente única de datos
+```bash
+npm run typecheck
+npm run build
+npm start
+```
 
-El catálogo frontend vive en:
+## Variables
+
+Copia `.env.example` a `.env.local` cuando empieces a integrar servicios reales.
+
+```env
+NEXT_PUBLIC_SITE_URL=https://nexusnodes.lat
+PTERODACTYL_BASE_URL=https://panel.nexusnodes.lat
+PTERODACTYL_APPLICATION_API_KEY=
+BILLING_WEBHOOK_SECRET=
+```
+
+Nunca expongas `PTERODACTYL_APPLICATION_API_KEY` ni secretos de billing mediante variables `NEXT_PUBLIC_*`.
+
+## Arquitectura
 
 ```text
-assets/js/data.js
+Browser
+  │
+  ▼
+Next.js App Router
+  ├─ Server Components        catálogo / contenido / metadata
+  ├─ Client Components        configuradores / UX interactiva
+  └─ Route Handlers           boundary inicial de APIs
+             │
+             ▼
+        Backend domain
+  ├─ Identity / sessions
+  ├─ Billing / invoices
+  ├─ Payments / webhooks
+  ├─ Stock / capacity
+  ├─ Observability
+  └─ Provisioning
+             │
+             ▼
+     Pterodactyl / Nodes
 ```
 
-Nodos actuales de la entrega:
+Consulta `INTEGRATION.md` para el flujo recomendado de producción.
 
-| Nodo | Región | Procesador | Minecraft | VPS |
+## Fuente de datos
+
+El catálogo está centralizado en:
+
+```text
+src/lib/catalog.ts
+```
+
+Y la lógica de estimación en:
+
+```text
+src/lib/pricing.ts
+```
+
+Esto reemplaza los datos repetidos que existían en la versión HTML.
+
+## Datos del catálogo heredados
+
+| Nodo | Región | CPU | Minecraft | VPS |
 |---|---|---|---:|---:|
 | DAL-01 | Dallas | Intel | $0.50/GB | $0.45/GB |
 | MIA-01 | Miami | Ryzen 7 3700X | $0.95/GB | $0.855/GB |
@@ -158,89 +144,59 @@ Nodos actuales de la entrega:
 | ARG-01 | Argentina | Intel Xeon | $1.00/GB | $0.90/GB |
 | MIA-02 | Miami Performance | Ryzen 9 5950X | $1.50/GB | $1.35/GB |
 
-Estos valores proceden del catálogo que recibió esta iteración y deben confirmarse antes de producción.
+Confirma estos datos antes de producción.
 
-## Importante: CPU y storage
+## Pricing demo
 
-La lógica de estimación incluye parámetros configurables:
+Los parámetros temporales siguen centralizados:
 
-```js
-cpuExtraPerCore: 0.35,
-extraStoragePerGb: 0.015,
+```ts
+cpuExtraPerCore: 0.35
+extraStoragePerGb: 0.015
 includedStorageGb: 20
 ```
 
-Son **parámetros de frontend para la experiencia del configurador**, no una sustitución del billing real.
+No los uses como autoridad de cobro. El total del navegador debe considerarse únicamente intención de compra.
 
-Antes de cobrar:
+## Seguridad incluida en la base
 
-1. El backend debe recalcular el precio.
-2. Debe validar producto, nodo, stock y límites permitidos.
-3. Debe ignorar cualquier total enviado por el navegador.
-4. Debe devolver el precio final autorizado por billing.
+- No hay secretos administrativos en componentes de cliente.
+- El endpoint de quote normaliza límites server-side.
+- Cabeceras básicas de seguridad en `next.config.ts`.
+- `poweredByHeader` desactivado.
+- Separación explícita entre UI, billing y provisioning.
+- Cuenta demo no envía credenciales a Pterodactyl.
+- Status evita presentar datos hardcoded como monitorización live.
 
-## Cuenta, billing y Pterodactyl
+## Pendiente antes de producción
 
-Nunca pongas una Application API Key de Pterodactyl, secretos de pago, claves de monitorización o credenciales administrativas en `assets/js/*`.
+1. Sistema real de identidad/sesión.
+2. Billing como autoridad de precio.
+3. Payment provider + webhooks idempotentes.
+4. Capacity/stock por nodo.
+5. Provisioning server-side.
+6. Integración Pterodactyl con Application API Key solo en servidor.
+7. Observabilidad real para Status.
+8. Looking Glass/Test IP para latencia.
+9. Textos legales reales.
+10. Analytics/consent según la jurisdicción aplicable.
 
-El frontend puede enviar una intención de pedido, pero el servidor debe encargarse de:
+## QA de esta entrega
 
-- autenticación y sesión;
-- rate limits;
-- CSRF cuando aplique;
-- validación server-side;
-- precio final;
-- pagos y webhooks;
-- idempotencia;
-- provisioning;
-- llamadas administrativas a Pterodactyl;
-- logging seguro.
+La entrega se valida estructuralmente y a nivel sintáctico dentro del entorno de creación. El entorno utilizado no permite instalar paquetes desde npm, así que `next build` debe ejecutarse después de `npm install` en tu máquina/VPS. Consulta `QA.md` para el detalle exacto.
 
-Consulta `INTEGRATION.md` para un contrato de integración recomendado.
+## Docker / VPS
 
-## Status / observabilidad
+La configuración usa `output: "standalone"`, así que también se incluye una imagen multi-stage:
 
-La página de Status **no finge monitorización live**. Los estados visibles son datos configurados hasta conectar una fuente real.
+```bash
+docker compose up -d --build
+```
 
-Para producción puedes exponer una API pública de solo lectura que agregue datos de, por ejemplo:
+Health endpoint:
 
-- Uptime Kuma;
-- Better Stack;
-- Prometheus/Grafana a través de una API propia;
-- health checks internos;
-- capacity/stock del sistema de billing/provisioning.
+```text
+GET /api/health
+```
 
-No expongas tokens del monitor al navegador.
-
-## Latencia y Region Advisor
-
-El Region Advisor usa una heurística de audiencia para sugerir un punto de partida, pero **no muestra ping inventado**.
-
-Si quieres latencia real, implementa un Looking Glass/Test IP por nodo y mide desde el cliente. La interfaz de Network ya deja espacio para esa integración.
-
-## Despliegue recomendado
-
-1. Confirmar nodos, hardware y precios en `data.js`.
-2. Sustituir multiplicadores de CPU/storage por billing real.
-3. Conectar cuenta y provisioning al backend.
-4. Integrar stock/capacity por nodo.
-5. Conectar Status a observabilidad read-only.
-6. Añadir Looking Glass si existe infraestructura para ello.
-7. Servir `/assets/` con cache largo e immutable cuando uses filenames versionados.
-8. Activar Brotli/Gzip y HTTP/2 o HTTP/3 en CDN/origin.
-9. Definir CSP y headers de seguridad en el servidor/CDN.
-10. Añadir analytics/consent solamente si de verdad se van a utilizar.
-
-## Validación realizada en esta entrega
-
-- Parseo de todos los JavaScript con `node --check`.
-- Comprobación automática de referencias locales HTML/CSS/JS/assets.
-- Render headless de las 10 rutas.
-- Desktop 1440 px y mobile 390 px.
-- Sin overflow horizontal detectado en las rutas probadas.
-- Sin errores de consola/page JS en la pasada final.
-- Navegación móvil y componentes principales revisados.
-- Smart Sizer/configuración compartible verificados.
-- Minecraft Sizer, Node Explorer, Cuenta y Brief Builder renderizados.
-
-Los tests de navegador son una validación del frontend estático; no sustituyen pruebas de billing/provisioning cuando esos sistemas se conecten.
+El contenedor ejecuta un health check contra ese endpoint.
