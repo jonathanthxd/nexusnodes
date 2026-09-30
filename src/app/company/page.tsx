@@ -2,10 +2,42 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/page-shell";
 import { SectionHeading } from "@/components/section-heading";
+import { PlatformArchitecture } from "@/components/platform-architecture";
 import { Icon } from "@/components/icon";
 
 export const metadata: Metadata = { title: "Empresa", description: "Principios técnicos y de producto detrás de NexusNodes." };
 
+const principles = [
+  ["01", "Comprensible", "RAM, CPU, storage y región deben ser visibles antes de pagar. El nombre del plan nunca debería ocultar la unidad económica.", "sliders"],
+  ["02", "Verificable", "Ping, uptime, capacidad y estado live solo se presentan como tales cuando existe una fuente medible detrás.", "activity"],
+  ["03", "Composable", "Experiencia, identidad, billing y provisioning evolucionan como capas con límites claros.", "layers"],
+  ["04", "Operable", "Una buena compra termina en una buena experiencia diaria: console, backups, files, schedules y equipo.", "terminal"]
+] as const;
+
 export default function CompanyPage() {
-  return <><PageHero compact eyebrow="ABOUT NEXUSNODES" title={<>Una marca de hosting<br/><span className="gradient-text">con criterio de producto.</span></>} copy="La v4 está diseñada para crecer desde una landing pública hasta una plataforma conectada a billing, observabilidad y provisioning sin sacrificar claridad." actions={<Link href="/contact" className="button primary">Hablar con NexusNodes <Icon name="arrow"/></Link>}/><section className="section"><div className="container"><SectionHeading eyebrow="PRINCIPLES" title="Cómo debería sentirse la infraestructura."/><div className="manifesto-grid"><article><span>01</span><h3>Comprensible</h3><p>RAM, CPU, storage y región deben ser visibles antes de pagar. El nombre del plan nunca debería ocultar la unidad económica.</p></article><article><span>02</span><h3>Verificable</h3><p>Ping, uptime, capacidad y estado live solo se presentan como tales cuando hay una fuente medible detrás.</p></article><article><span>03</span><h3>Composable</h3><p>La web, el backend y el provisioning son capas separadas. Cada una puede evolucionar sin rehacer las otras.</p></article><article><span>04</span><h3>Operable</h3><p>Una buena compra termina en una buena experiencia diaria: console, backups, files, schedules y equipo.</p></article></div></div></section><section className="section section-dim"><div className="container"><SectionHeading eyebrow="PLATFORM MAP" title="De visita a servidor provisionado."/><div className="platform-flow"><div><Icon name="globe"/><strong>Next.js Web</strong><span>Discovery + configuration</span></div><i/><div><Icon name="user"/><strong>Identity</strong><span>Session + customer</span></div><i/><div><Icon name="database"/><strong>Billing</strong><span>Price + payment</span></div><i/><div><Icon name="server"/><strong>Provisioning</strong><span>Pterodactyl / hypervisor</span></div></div></div></section><section className="section tight"><div className="container cta-mega"><div><span className="eyebrow">NEXT STEP</span><h2>La UI ya piensa como una plataforma.</h2><p>Ahora puede conectarse a los sistemas reales cuando estén definidos.</p></div><Link href="/dashboard-demo" className="button ghost large">Explorar demo <Icon name="arrow"/></Link></div></section></>;
+  return (
+    <>
+      <PageHero compact eyebrow="ABOUT NEXUSNODES" title={<>Hosting designed<br/><span className="gradient-text">like a product system.</span></>} copy="NexusNodes no se plantea como un checkout pegado a Pterodactyl. Discovery, identity, commerce, observability y provisioning pueden evolucionar como capas separadas sin perder una experiencia coherente." actions={<><Link href="/contact" className="button primary">Hablar con NexusNodes <Icon name="arrow"/></Link><Link href="/dashboard-demo" className="button ghost"><Icon name="layout"/> Nexus Control</Link></>} />
+
+      <section className="section">
+        <div className="container">
+          <SectionHeading eyebrow="PRODUCT PRINCIPLES" title={<>Infrastructure should be<br/><span className="text-muted">easy to understand and hard to fake.</span></>} />
+          <div className="principle-grid-v5">
+            {principles.map(([number, title, copy, icon]) => <article key={number}><span className="principle-number">{number}</span><span className="icon-tile"><Icon name={icon}/></span><h3>{title}</h3><p>{copy}</p></article>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-dim">
+        <div className="container">
+          <SectionHeading eyebrow="PLATFORM ARCHITECTURE" title={<>One experience.<br/><span className="text-muted">Four explicit boundaries.</span></>} copy="Explora qué debe resolver cada capa y, más importante, qué no debería resolver." />
+          <PlatformArchitecture/>
+        </div>
+      </section>
+
+      <section className="section tight">
+        <div className="container cta-mega cta-mega-v5"><div><span className="eyebrow">NEXT STEP</span><h2>From polished frontend to real infrastructure.</h2><p>La experiencia pública ya está preparada para conectarse a identidad, billing, observabilidad y provisioning reales.</p></div><Link href="/contact" className="button primary large">Prepare a brief <Icon name="arrow"/></Link></div>
+      </section>
+    </>
+  );
 }

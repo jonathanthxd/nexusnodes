@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { AccountPanel } from "@/components/account-panel";
 import { pickNumber, pickString } from "@/lib/utils";
 
-export const metadata: Metadata = { title: "Cuenta", description: "Acceso a NexusNodes y contexto de pedido preparado para backend." };
 type Search = Record<string, string | string[] | undefined>;
+export const metadata: Metadata = { title: "Nexus Identity", description: "Access NexusNodes and carry deployment context into the customer identity flow." };
 
 export default async function AccountPage({ searchParams }: { searchParams: Promise<Search> }) {
   const query = await searchParams;
@@ -15,6 +15,5 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
     cores: pickNumber(query.cores, 2),
     storageGb: pickNumber(query.storage, 40)
   } : undefined;
-
-  return <section className="account-page"><div className="hero-grid-bg"/><div className="container"><AccountPanel context={context}/></div></section>;
+  return <section className="account-page account-page-v5"><div className="hero-grid-bg"/><div className="hero-orb orb-one"/><div className="container"><AccountPanel context={context}/></div></section>;
 }

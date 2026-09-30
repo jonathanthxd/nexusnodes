@@ -1,4 +1,4 @@
-# NexusNodes v4 — Integration Blueprint
+# NexusNodes v5 — Integration Blueprint
 
 La UI ya está preparada para trabajar como frontend de una plataforma real. Esta guía define el boundary recomendado.
 

@@ -1,81 +1,95 @@
 # Changelog
 
-## 4.0.0 — Biggest Update / Next.js
+## 5.0.0 — Next.js Super UI Update
 
-### Arquitectura
+### Design system
 
-- Migración total de HTML/CSS/JS estático a Next.js App Router.
-- TypeScript estricto.
-- Server Components por defecto.
-- Client Components aislados para interacción.
-- Route Handlers para quote y status.
-- Dynamic routes para nodos.
-- Metadata, robots, sitemap y manifest mediante convenciones Next.js.
-- Standalone output para self-hosting.
-- Error boundary, loading UI y 404 nativos.
+- Rework visual completo sobre la arquitectura Next.js de v4.
+- `lucide-react` sustituye los iconos SVG internos.
+- Motion for React para transiciones y microinteracciones en client islands.
+- Nueva jerarquía de superficies, bento layouts, halos, grids y estados de foco.
+- Mega menu de productos, navegación móvil y command palette renovados.
+- Responsive refinado para desktop, tablet y mobile.
 
-### Diseño / UX
+### Home
 
-- Home reconstruida con Nexus Launchpad.
-- Product bento Minecraft/VPS.
-- Control plane visual.
-- Network visual interactiva.
-- Command palette global `Ctrl/⌘ + K`.
-- Header sticky + navegación móvil.
-- Responsive completo y reduced motion.
+- Hero reconstruido alrededor de **Quick Deploy Studio**.
+- Selector Minecraft/VPS, presets, RAM, vCPU, NVMe y región.
+- Estimación animada conectada al mismo pricing catalog.
+- Product bento asimétrico.
+- Preview interactivo de Nexus Control.
+- Network showcase y deployment flow.
+
+### Nexus Control
+
+- Dashboard demo completamente nuevo.
+- Sidebar, topbar y server controls.
+- Overview con KPIs, chart y activity feed.
+- Console interactiva.
+- File manager.
+- Backups.
+- Automations / schedules.
+- Network view.
+- Estados Start / Restart / Stop simulados explícitamente como demo.
+
+### Configurator
+
+- Pricing convertido en una experiencia de 3 columnas.
+- Smart Sizer integrado.
+- Recursos y nodos con controles visuales.
+- Order summary sticky.
+- Precio animado.
+- Guardado local y share URL.
+- Validación server-side mediante `/api/quote` preservada.
 
 ### Minecraft
 
-- Página dedicada nueva.
-- Minecraft Sizer por workload, jugadores, audiencia y carga pesada.
-- Software matrix.
-- Operations feature set.
-- Flujo visual de migración.
+- Hero interactivo propio.
+- Modos SMP, Modded y Network.
+- Topología de servicios, player context y recursos.
+- Minecraft Sizer preservado e integrado en el nuevo sistema visual.
+- Operations, software ecosystem y migration flow rehechos.
 
 ### VPS
 
-- Deploy Composer por distro, workload y nodo.
-- Use-case matrix.
-- Arquitectura frontend → billing → provisioning.
+- Hero interactivo propio.
+- Workloads Web/API, Database y Full Stack.
+- Compute/storage/usage visual.
+- Deploy Composer integrado.
+- Provisioning path y workload cards nuevos.
 
 ### Network
 
-- Node Explorer.
-- Region Advisor.
-- Fichas dinámicas `/network/[node]`.
-- Tabla comparativa.
-- Bloques preparados para Looking Glass, health checks y capacity API.
+- Node Explorer rehecho como herramienta visual.
+- Hardware, rates, capabilities y Region Advisor en una sola superficie.
+- Fichas dinámicas dejan de presentar catálogo como health live.
+- Nuevo `GET /api/catalog` público, separado de status/observabilidad.
 
-### Pricing
+### Identity / Status
 
-- Smart Sizer.
-- Configurador RAM/CPU/NVMe/nodo.
-- Breakdown de coste.
-- Guardado local y links compartibles.
-- Validación server-side mediante `/api/quote`.
-- Order context hacia `/account`.
+- Nexus Identity renovado con order context, login/register animados y password strength.
+- Status rediseñado para distinguir explícitamente snapshot configurado y observabilidad live.
 
-### Cuenta
+### Company / Contact
 
-- Login/register UX.
-- Password strength.
-- Order context recalculado.
-- Sin secretos ni provisioning desde el navegador.
+- Company recibe un Platform Architecture explorer interactivo.
+- Contact recibe rutas de intención y Pre-sales Brief Builder renovado con Motion.
 
-### Dashboard Demo
+### Next.js
 
-- Nuevo concepto `Nexus Control`.
-- Overview, Console, Files, Backups y Schedules interactivos.
-- Estado Start/Restart/Stop simulado.
+- Open Graph generado por código con `next/og`.
+- Open Graph dinámico por `/network/[node]`.
+- `loading.tsx` convertido en skeleton de streaming visual.
+- `error.tsx` y `not-found.tsx` mantienen integración nativa del App Router.
+- Metadata de rutas preservada.
+- API health reporta versión 5.0.0.
 
-### Status
+## 4.0.0 — Biggest Update / Next.js
 
-- `/api/status` demo.
-- UI explícitamente diferenciada de observabilidad real.
-
-### Seguridad / Calidad
-
-- Security headers básicos.
-- `poweredByHeader: false`.
-- Configuraciones y catálogo tipados.
-- No se confía en precio enviado por query string.
+- Migración total de HTML/CSS/JS estático a Next.js App Router.
+- TypeScript estricto, Server Components y Client Components aislados.
+- Route Handlers para quote/status/health.
+- Dynamic routes por nodo.
+- Metadata, robots, sitemap y manifest mediante convenciones Next.js.
+- Standalone output para self-hosting.
+- Smart Sizer, Node Explorer, Nexus Control v1, Minecraft Sizer y VPS Composer.

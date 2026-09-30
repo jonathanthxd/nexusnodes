@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { getNode } from "@/lib/catalog";
 import { calculateQuote, formatMoney } from "@/lib/pricing";
@@ -20,6 +21,8 @@ export function AccountPanel({ context }: { context?: AccountContext }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [notice, setNotice] = useState("");
   const score = useMemo(() => passwordScore(password), [password]);
   const quote = context ? calculateQuote(context) : null;
   const node = context ? getNode(context.nodeId) : null;
@@ -30,30 +33,33 @@ export function AccountPanel({ context }: { context?: AccountContext }) {
       window.location.href = "https://panel.nexusnodes.lat";
       return;
     }
-    alert("La interfaz de registro está lista. Conecta aquí tu backend de autenticación y provisioning; no se enviaron credenciales a ningún tercero.");
+    setNotice("Registration UI is ready; connect it to your trusted identity backend before production.");
   }
 
   return (
-    <div className="account-layout">
-      <div className="account-promo">
-        <span className="eyebrow">NEXUS IDENTITY</span>
-        <h2>Una cuenta.<br/>Toda tu infraestructura.</h2>
-        <p>El frontend queda preparado para separar autenticación, billing y provisioning sin exponer secretos administrativos en el navegador.</p>
-        <div className="account-feature-list"><span><Icon name="server"/>Minecraft &amp; VPS</span><span><Icon name="database"/>Billing context</span><span><Icon name="shield"/>Backend-first provisioning</span><span><Icon name="terminal"/>Pterodactyl / control plane</span></div>
-        {quote && context && node ? <div className="order-context"><span className="micro-label">ORDER CONTEXT</span><div className="order-context-head"><strong>{context.product === "minecraft" ? "Minecraft Server" : "Cloud VPS"}</strong><b>{formatMoney(quote.total)}<small>/mes</small></b></div><div className="order-context-grid"><span>{node.code}</span><span>{context.ramGb} GB RAM</span><span>{context.cores} vCPU</span><span>{context.storageGb} GB NVMe</span></div><p>El servidor debe volver a calcular y validar este pedido antes de cobrar.</p></div> : null}
+    <div className="account-layout account-layout-v5">
+      <div className="account-promo account-promo-v5">
+        <div className="identity-orbit" aria-hidden="true"><i/><i/><i/><span>N</span><b className="identity-node id-a"><Icon name="server"/></b><b className="identity-node id-b"><Icon name="credit"/></b><b className="identity-node id-c"><Icon name="shield"/></b></div>
+        <div className="account-promo-copy"><span className="hero-kicker"><i/><span>NEXUS IDENTITY</span></span><h1>One identity.<br/><span className="gradient-text">Every service.</span></h1><p>Your account is the bridge between configuration, billing and the control plane. The browser never needs administrator secrets to provide a polished experience.</p><div className="account-feature-list account-feature-list-v5"><span><Icon name="gamepad"/><b>Minecraft &amp; VPS</b><small>One customer surface.</small></span><span><Icon name="wallet"/><b>Billing context</b><small>Orders follow the identity.</small></span><span><Icon name="shield"/><b>Trusted boundaries</b><small>Provisioning stays server-side.</small></span><span><Icon name="layout"/><b>Nexus Control</b><small>Operate after checkout.</small></span></div></div>
+
+        {quote && context && node ? <motion.div className="order-context order-context-v5" initial={{opacity:0,y:10}} animate={{opacity:1,y:0}}><div className="order-context-head-v5"><span><Icon name="wallet"/> PENDING CONFIGURATION</span><strong>{formatMoney(quote.total)}<small>/mo</small></strong></div><div className="order-context-product-v5"><span className="order-context-icon"><Icon name={context.product === "minecraft" ? "gamepad" : "cloud"}/></span><span><b>{context.product === "minecraft" ? "Minecraft Server" : "Cloud VPS"}</b><small>{node.flag} {node.code} · {node.city}</small></span></div><div className="order-context-grid order-context-grid-v5"><span><Icon name="memory"/><b>{context.ramGb} GB</b><small>RAM</small></span><span><Icon name="cpu"/><b>{context.cores}</b><small>vCPU</small></span><span><Icon name="disk"/><b>{context.storageGb} GB</b><small>NVMe</small></span></div><p>Pricing must be recalculated by the backend again before payment.</p></motion.div> : null}
       </div>
 
-      <div className="account-card">
-        <div className="account-tabs"><button className={cx(mode === "login" && "is-active")} onClick={() => setMode("login")}>Iniciar sesión</button><button className={cx(mode === "register" && "is-active")} onClick={() => setMode("register")}>Crear cuenta</button></div>
-        <div className="account-card-head"><span className="eyebrow">{mode === "login" ? "WELCOME BACK" : "CREATE NEXUS ID"}</span><h3>{mode === "login" ? "Vuelve a tu panel." : "Empieza con una identidad segura."}</h3><p>{mode === "login" ? "La demo redirige al panel oficial y no procesa tu contraseña aquí." : "Conecta este formulario a tu backend. La UI nunca debe tener una Application API Key."}</p></div>
-        <form onSubmit={handleSubmit}>
-          {mode === "register" ? <label className="field-label">Nombre<input required value={name} onChange={(event) => setName(event.target.value)} placeholder="Tu nombre" autoComplete="name"/></label> : null}
-          <label className="field-label">Email<input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="tu@email.com" autoComplete="email"/></label>
-          <label className="field-label">Contraseña<input required type="password" minLength={mode === "register" ? 8 : undefined} value={password} onChange={(event) => setPassword(event.target.value)} placeholder="••••••••••••" autoComplete={mode === "login" ? "current-password" : "new-password"}/></label>
-          {mode === "register" ? <div className="password-strength"><div><i className={score >= 1 ? "on" : ""}/><i className={score >= 2 ? "on" : ""}/><i className={score >= 3 ? "on" : ""}/><i className={score >= 4 ? "on" : ""}/></div><span>{score < 2 ? "Débil" : score < 4 ? "Aceptable" : "Fuerte"}</span></div> : null}
-          <button className="button primary full" type="submit">{mode === "login" ? "Continuar al panel" : "Crear cuenta"}<Icon name="arrow"/></button>
-        </form>
-        <div className="security-note"><Icon name="lock"/><span>Esta entrega no contiene claves Pterodactyl, tokens de pago ni secretos de backend.</span></div>
+      <div className="account-card account-card-v5">
+        <div className="account-card-brand"><span>N</span><div><strong>NexusNodes</strong><small>Identity gateway</small></div></div>
+        <div className="account-tabs account-tabs-v5"><button className={cx(mode === "login" && "is-active")} onClick={() => { setMode("login"); setNotice(""); }}>Sign in</button><button className={cx(mode === "register" && "is-active")} onClick={() => { setMode("register"); setNotice(""); }}>Create account</button></div>
+        <AnimatePresence mode="wait"><motion.div key={mode} initial={{opacity:0,x:8}} animate={{opacity:1,x:0}} exit={{opacity:0,x:-8}} transition={{duration:.16}}>
+          <div className="account-card-head account-card-head-v5"><span className="eyebrow">{mode === "login" ? "WELCOME BACK" : "CREATE NEXUS ID"}</span><h2>{mode === "login" ? "Continue to your infrastructure." : "Start with a secure identity."}</h2><p>{mode === "login" ? "This public frontend redirects to the official panel instead of processing panel credentials itself." : "The form is presentation-ready; connect it to your own authentication backend before accepting registrations."}</p></div>
+          <form onSubmit={handleSubmit} className="account-form-v5">
+            {mode === "register" ? <label className="auth-field-v5"><span>Name</span><div><Icon name="user"/><input required value={name} onChange={(event) => setName(event.target.value)} placeholder="Your name" autoComplete="name"/></div></label> : null}
+            <label className="auth-field-v5"><span>Email</span><div><Icon name="mail"/><input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" autoComplete="email"/></div></label>
+            <label className="auth-field-v5"><span>Password</span><div><Icon name="lock"/><input required type={showPassword ? "text" : "password"} minLength={mode === "register" ? 8 : undefined} value={password} onChange={(event) => setPassword(event.target.value)} placeholder="••••••••••••" autoComplete={mode === "login" ? "current-password" : "new-password"}/><button type="button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Hide password" : "Show password"}><Icon name={showPassword ? "eye-off" : "eye"}/></button></div></label>
+            {mode === "register" ? <div className="password-strength password-strength-v5"><div><i className={score >= 1 ? "on" : ""}/><i className={score >= 2 ? "on" : ""}/><i className={score >= 3 ? "on" : ""}/><i className={score >= 4 ? "on" : ""}/></div><span>{score < 2 ? "Weak" : score < 4 ? "Good" : "Strong"}</span></div> : <div className="auth-helper-v5"><label><input type="checkbox"/> Remember me</label><button type="button">Forgot password?</button></div>}
+            <button className="button primary full large" type="submit">{mode === "login" ? "Continue to panel" : "Create account"}<Icon name="arrow"/></button>
+          </form>
+          {notice ? <motion.div className="account-notice-v5" initial={{opacity:0,y:5}} animate={{opacity:1,y:0}}><Icon name="shield"/><span>{notice}</span></motion.div> : null}
+        </motion.div></AnimatePresence>
+        <div className="security-note security-note-v5"><Icon name="lock"/><span>No Pterodactyl application keys, payment secrets or admin tokens belong in this client bundle.</span></div>
       </div>
     </div>
   );

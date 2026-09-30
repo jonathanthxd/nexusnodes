@@ -1,6 +1,8 @@
-# Migration map — v3 static → v4 Next.js
+# Migration map — NexusNodes
 
-| v3 | v4 |
+## v3 static → v4 Next.js
+
+| v3 | v4+ |
 |---|---|
 | `index.html` | `src/app/page.tsx` |
 | `minecraft.html` | `src/app/minecraft/page.tsx` |
@@ -16,19 +18,32 @@
 | global shell JS | React Client Components |
 | static SEO tags | Next.js Metadata API |
 | `404.html` | `src/app/not-found.tsx` |
-| static manifest/sitemap | Next.js route conventions |
 
-## Qué no se migró literalmente
+## v4 → v5
 
-No se copiaron scripts imperativos ni HTML repetido. Se reescribieron como componentes y módulos tipados para evitar mantener dos arquitecturas a la vez.
+v5 **no revierte la arquitectura** ni reescribe todo como SPA. Mejora la capa de producto usando el modelo de Next.js:
 
-## Assets preservados
+```text
+Server Components     contenido, catálogo, metadata, rutas
+Client Islands        estado, controles, motion, dashboards
+Route Handlers        boundaries HTTP
+Dynamic Segments      nodos
+Metadata Routes       sitemap, robots, manifest, OG images
+```
 
-- logo mark
-- modelado artwork
-- PWA icons
-- Apple touch icon
+Principales sustituciones:
 
-## Compatibilidad conceptual
+| v4 | v5 |
+|---|---|
+| iconos SVG internos | `lucide-react` |
+| hero estático/terminal | Quick Deploy Studio |
+| cards homogéneas | bento + product surfaces |
+| dashboard demo simple | Nexus Control multi-view |
+| pricing tipo formulario | Configurator 3-panel |
+| hero Minecraft genérico | Minecraft interactive topology |
+| hero VPS genérico | VPS workload surface |
+| Node Explorer card grid | explorer interactivo consolidado |
+| OG estático | `next/og` + OG dinámico por nodo |
+| loading mínimo | streaming skeleton |
 
-Los nodos y precios base heredados se conservaron como catálogo, pero ahora viven en una única fuente tipada.
+Los datos de catálogo y pricing siguen centralizados, por lo que la mejora visual no reintroduce duplicación de datos.

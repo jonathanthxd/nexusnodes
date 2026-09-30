@@ -4,7 +4,7 @@ export function GET() {
   return NextResponse.json({
     ok: true,
     service: "nexusnodes-web",
-    version: "4.0.0",
+    version: "5.0.0",
     timestamp: new Date().toISOString()
   }, { headers: { "cache-control": "no-store" } });
 }
