@@ -1,113 +1,50 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cuenta — NexusNodes</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css@v=9.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#05060a">
+  <meta name="description" content="Cuenta NexusNodes: acceso al panel y registro visual preparado para integrar con un backend seguro."><meta property="og:title" content="Cuenta — NexusNodes"><meta property="og:description" content="Accede a NexusNodes y continúa con tu configuración."><meta property="og:type" content="website"><meta property="og:url" content="https://nexusnodes.lat/cuenta.html">
+  <link rel="canonical" href="https://nexusnodes.lat/cuenta.html"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css">
+  <title>Cuenta — NexusNodes</title>
 </head>
-<body>
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="index.html">
-      <img class="brand-logo" src="assets/SinFondo.png" alt="NexusNodes" width="36" height="36">
-      <span class="brand-text">Nexus<span>Nodes</span></span>
-    </a>
-    <nav class="nav-links">
-      <a href="planes.html">Planes</a>
-      <a href="planes/minecraft.html">Minecraft</a>
-      <a href="planes/vps.html">VPS</a>
-      <a href="planes/ubicaciones.html">Ubicaciones</a>
-    </nav>
-    <div class="nav-actions">
-      <a class="btn secondary" href="cuenta.html">Iniciar sesión</a>
-      <a class="btn primary" href="cuenta.html">Crear cuenta</a>
-    </div>
-  </div>
-</header>
+<body data-page="account">
+  <div data-site-header></div>
+  <main id="main" class="account-page">
+    <section class="account-visual">
+      <span class="account-orbit"></span><span class="account-node n1"></span><span class="account-node n2"></span><span class="account-node n3"></span><span class="account-node n4"></span><span class="account-center"><img src="assets/SinFondo.png" alt=""></span>
+      <div class="account-copy" data-reveal><span class="label">Nexus Account</span><h1>Una cuenta.<br><span class="gradient-text">Todos tus servicios.</span></h1><p>Minecraft, VPS y panel dentro del mismo recorrido. El frontend queda listo para integrarse con autenticación real sin volver a diseñar la experiencia.</p><div class="account-benefits"><span>Minecraft</span><span>VPS</span><span>Billing ready</span><span>Pterodactyl</span></div></div>
+    </section>
 
-<main>
-  <section class="page-hero">
-    <div class="container">
-      <span class="label">CUENTA NEXUSNODES</span>
-      <h1>Tu acceso.<br><span>Tu panel Pterodactyl.</span></h1>
-      <p>Registrate una vez: se crea el usuario en Pterodactyl. Las mismas credenciales sirven para Minecraft y VPS.</p>
-    </div>
-  </section>
+    <section class="account-form-wrap">
+      <div class="auth-card" data-reveal>
+        <h2>Bienvenido.</h2><p class="auth-sub" id="authSubtitle">Entra al panel o crea tu cuenta NexusNodes.</p>
+        <div class="account-tabs"><button type="button" class="active" data-auth-tab="login">Iniciar sesión</button><button type="button" data-auth-tab="register">Crear cuenta</button></div>
 
-  <section class="section" style="padding-top:10px">
-    <div class="container">
-      <div class="account-box">
-        <h2 style="margin:0 0 6px;font-size:22px">Bienvenido</h2>
-        <p style="color:var(--muted);font-size:14px;margin:0 0 18px">
-          Creá tu cuenta o iniciá sesión. El registro crea el usuario en Pterodactyl.        </p>
+        <div data-auth-panel="login">
+          <form class="auth-form" id="loginForm" novalidate>
+            <div class="field"><label for="loginEmail">Correo</label><input id="loginEmail" type="email" autocomplete="email" placeholder="tu@correo.com" required></div>
+            <div class="field"><label for="loginPassword">Contraseña</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" required></div>
+            <button class="button primary full" type="submit">Continuar al panel</button>
+          </form>
+          <div class="auth-note"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 7.7 7.5 9.5 4.3-1.8 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></span><span>Esta versión no envía tu contraseña desde el HTML estático. Al continuar abre el panel oficial para autenticarte allí de forma segura.</span></div>
+        </div>
 
-        
-                  <div class="account-tabs">
-            <button type="button" data-tab="login" class="active">Iniciar sesión</button>
-            <button type="button" data-tab="register">Crear cuenta</button>
-          </div>
+        <div data-auth-panel="register" hidden>
+          <div id="orderContext"></div>
+          <form class="auth-form" id="registerForm" novalidate>
+            <div class="field-row"><div class="field"><label for="firstName">Nombre</label><input id="firstName" name="first_name" autocomplete="given-name" required minlength="2"></div><div class="field"><label for="lastName">Apellido</label><input id="lastName" name="last_name" autocomplete="family-name" required minlength="2"></div></div>
+            <div class="field"><label for="registerEmail">Correo</label><input id="registerEmail" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="username">Usuario del panel</label><input id="username" name="username" autocomplete="username" pattern="[A-Za-z0-9._-]+" minlength="3" maxlength="30" required></div>
+            <div class="field-row"><div class="field"><label for="registerPassword">Contraseña</label><input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" required></div><div class="field"><label for="confirmPassword">Repetir</label><input id="confirmPassword" name="password_confirm" type="password" autocomplete="new-password" minlength="8" required></div></div>
+            <button class="button primary full" type="submit">Solicitar creación de cuenta</button>
+          </form>
+          <div class="form-message info" id="registerMessage" role="status"></div>
+          <div class="auth-note"><span class="icon"><svg viewBox="0 0 24 24"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></span><span>El frontend está terminado, pero crear usuarios en Pterodactyl requiere un endpoint backend con rate limit, CSRF/session handling y una API key guardada solo en servidor. El README incluye el contrato sugerido.</span></div>
+        </div>
 
-          <div id="tab-login">
-            <form class="form" method="post" action="cuenta.html">
-              <input type="hidden" name="action" value="login">
-              <input type="hidden" name="csrf" value="7e8375814057459f4aba4c076cfdd13639c35969ce5f1e431cc1421f9521d49a">
-              <label>Correo
-                <input type="email" name="email" required autocomplete="email">
-              </label>
-              <label>Contraseña
-                <input type="password" name="password" required autocomplete="current-password">
-              </label>
-              <button class="button primary" type="submit">Iniciar sesión</button>
-            </form>
-          </div>
-
-          <div id="tab-register" style="display:none">
-            <form class="form" method="post" action="cuenta.html">
-              <input type="hidden" name="action" value="register">
-              <input type="hidden" name="csrf" value="7e8375814057459f4aba4c076cfdd13639c35969ce5f1e431cc1421f9521d49a">
-              <label>Nombre
-                <input type="text" name="first_name" required minlength="2" autocomplete="given-name">
-              </label>
-              <label>Apellido
-                <input type="text" name="last_name" required minlength="2" autocomplete="family-name">
-              </label>
-              <label>Correo
-                <input type="email" name="email" required autocomplete="email">
-              </label>
-              <label>Usuario del panel (Pterodactyl)
-                <input type="text" name="username" required minlength="3" maxlength="30" pattern="[A-Za-z0-9._-]+" autocomplete="username">
-              </label>
-              <label>Contraseña
-                <input type="password" name="password" required minlength="8" autocomplete="new-password">
-              </label>
-              <label>Repetir contraseña
-                <input type="password" name="password_confirm" required minlength="8" autocomplete="new-password">
-              </label>
-              <button class="button primary" type="submit">Crear cuenta en Pterodactyl</button>
-            </form>
-          </div>
-              </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container footer">
-    <div class="footer-brand">
-      <img class="brand-logo" src="assets/SinFondo.png" alt="" width="28" height="28">
-      <span>NexusNodes</span>
-    </div>
-    <div class="footer-links">
-      <a href="index.html">Inicio</a>
-      <a href="planes.html">Planes</a>
-      <a href="https://panel.nexusnodes.lat" target="_blank" rel="noopener">Panel</a>
-    </div>
-  </div>
-</footer>
-<script src="js/cuenta.js@v=9"></script>
+        <div class="support-link" id="support">¿Necesitas ayuda? <a href="https://panel.nexusnodes.lat" target="_blank" rel="noopener">Abrir panel NexusNodes</a></div>
+      </div>
+    </section>
+  </main>
+  <script src="assets/js/data.js"></script><script src="assets/js/app.js"></script><script src="assets/js/account.js"></script>
 </body>
 </html>

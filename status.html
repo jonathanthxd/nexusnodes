@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#05060a">
+  <meta name="description" content="Estado de servicios NexusNodes."><meta property="og:title" content="Status — NexusNodes"><meta property="og:description" content="Vista de estado preparada para integrar monitorización real."><meta property="og:type" content="website"><meta property="og:url" content="https://nexusnodes.lat/status.html">
+  <link rel="canonical" href="https://nexusnodes.lat/status.html"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css">
+  <title>Status — NexusNodes</title>
+</head>
+<body data-page="status">
+  <div data-site-header></div>
+  <main id="main">
+    <section class="page-hero center"><div class="container" data-reveal><span class="label">Status</span><h1 class="display">Estado de<br><span class="gradient">NexusNodes.</span></h1><p class="lead">Vista de estado lista para conectarse a una fuente de monitorización real.</p><div class="status-hero-card"><span class="status-hero-icon"><span class="icon" style="--icon-size:23px"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 7.7 7.5 9.5 4.3-1.8 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></span></span><div><strong>Servicios configurados como operativos</strong><p>Este estado proviene de <code>assets/js/data.js</code>; no representa todavía un monitor externo en tiempo real.</p></div></div></div></section>
+    <section class="section"><div class="container"><div class="section-heading center" data-reveal><span class="label">Servicios</span><h2>Componentes principales.</h2><p>La UI está preparada para sustituir estos estados estáticos por Uptime Kuma, Better Stack, Cachet u otra API de monitorización.</p></div><div class="status-service-list" id="serviceStatusList"></div><div class="status-info">Producción recomendada: obtener estado desde un endpoint público de solo lectura y cachearlo. No expongas credenciales del monitor ni de Pterodactyl en JavaScript del navegador.</div></div></section>
+    <section class="section soft border-top"><div class="container"><div class="section-heading" data-reveal><span class="label">Nodos</span><h2>Estado por ubicación.</h2><p>Los nodos se generan desde la misma fuente central usada por Network y el configurador.</p></div><div class="location-cards" id="statusNodeCards"></div></div></section>
+  </main>
+  <div data-site-footer></div>
+  <script src="assets/js/data.js"></script><script src="assets/js/app.js"></script><script src="assets/js/status.js"></script>
+</body>
+</html>

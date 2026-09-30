@@ -1,182 +1,46 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Planes — NexusNodes</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css@v=9.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#05060a">
+  <meta name="description" content="Planes y configurador NexusNodes: compara Minecraft y VPS por ubicación, RAM, CPU y almacenamiento."><meta property="og:title" content="Precios — NexusNodes"><meta property="og:description" content="Configura recursos y obtén una estimación instantánea."><meta property="og:type" content="website"><meta property="og:url" content="https://nexusnodes.lat/planes.html">
+  <link rel="canonical" href="https://nexusnodes.lat/planes.html"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css">
+  <title>Precios — NexusNodes</title>
 </head>
-<body>
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="index.html">
-      <img class="brand-logo" src="assets/SinFondo.png" alt="NexusNodes" width="36" height="36">
-      <span class="brand-text">Nexus<span>Nodes</span></span>
-    </a>
-    <nav class="nav-links">
-      <a href="planes.html">Planes</a>
-      <a href="planes/minecraft.html">Minecraft</a>
-      <a href="planes/vps.html">VPS</a>
-      <a href="planes/ubicaciones.html">Ubicaciones</a>
-    </nav>
-    <div class="nav-actions">
-      <a class="btn secondary" href="cuenta.html">Iniciar sesión</a>
-      <a class="btn primary" href="cuenta.html">Crear cuenta</a>
-    </div>
-  </div>
-</header>
+<body data-page="planes">
+  <div data-site-header></div>
+  <main id="main">
+    <section class="page-hero center"><div class="container" data-reveal><span class="label">Precios</span><h1 class="display">Recursos claros.<br><span class="gradient">Coste visible.</span></h1><p class="lead">Elige producto, nodo y recursos. El precio base por GB viene del sitio original; los extras de CPU y almacenamiento están parametrizados para que los adaptes a tu facturación real.</p></div></section>
 
-<main>
-  <section class="page-hero">
-    <div class="container">
-      <span class="label">PLANES NEXUSNODES</span>
-      <h1>Precios claros.<br><span>Sin letras chicas.</span></h1>
-      <p>Elegí ubicación, RAM y CPU. Activación rápida y splits ilimitados.</p>
-    </div>
-  </section>
+    <section class="section" id="planes"><div class="container"><div class="pricing-tabs" data-reveal><div class="segmented" data-product-tabs><button class="active" data-product="minecraft">Minecraft</button><button data-product="vps">VPS</button></div></div><div class="pricing-grid" id="presetPlanGrid"></div></div></section>
 
-  <section class="section" id="minecraft">
-    <div class="container">
-      <div class="section-head">
-        <span class="label">MINECRAFT</span>
-        <h2>Minecraft Hosting</h2>
-        <p>Planes ordenados del más económico al más potente. Seleccioná ubicación para actualizar precios.</p>
-      </div>
+    <section class="section soft border-top" id="configurador">
+      <div class="container">
+        <div class="section-heading" data-reveal><span class="label">Configurador</span><h2>Construye tu plan.</h2><p>El cambio más importante frente al original: CPU y almacenamiento ya no son decorativos. Afectan la estimación y se resumen de forma transparente.</p></div>
+        <div class="pricing-layout">
+          <div class="config-panel" data-reveal>
+            <div class="config-group"><div class="config-label"><strong>1. Producto</strong><span>¿Qué vas a desplegar?</span></div><div class="segmented" style="width:100%" data-config-product><button class="active" data-product="minecraft">Minecraft</button><button data-product="vps">VPS</button></div></div>
+            <div class="config-group"><div class="config-label"><strong>2. Ubicación</strong><span>Tarifa base por GB</span></div><div class="location-selector" id="locationSelector"></div></div>
+            <div class="config-group"><div class="config-label"><strong>3. Memoria RAM</strong><span id="ramHint">4–64 GB</span></div><div class="range-wrap"><input id="ramRange" type="range" min="4" max="64" step="2" value="8" aria-label="RAM"><output class="range-value" id="ramValue">8 GB</output></div></div>
+            <div class="config-group"><div class="config-label"><strong>4. CPU</strong><span>100% = 1 core</span></div><div class="range-wrap"><input id="cpuRange" type="range" min="1" max="16" step="1" value="2" aria-label="CPU"><output class="range-value" id="cpuValue">2 cores</output></div></div>
+            <div class="config-group"><div class="config-label"><strong>5. Almacenamiento</strong><span>20 GB incluidos en la estimación base</span></div><div class="range-wrap"><input id="storageRange" type="range" min="20" max="300" step="10" value="40" aria-label="Almacenamiento"><output class="range-value" id="storageValue">40 GB</output></div></div>
+            <div class="config-group"><div class="config-label"><strong>Presets rápidos</strong><span>Rellena recursos de un clic</span></div><div class="preset-buttons" id="quickPresets"></div></div>
+          </div>
 
-      <div class="selector-bar" id="selector">
-        <button class="active" data-price="0.50">🇺🇸 Dallas · Intel · $0.50/GB</button>
-        <button data-price="0.95">🇺🇸 Miami FL · R7 · $0.95/GB</button>
-        <button data-price="0.95">🇨🇱 Santiago · Intel · $0.95/GB</button>
-        <button data-price="1.00">🇦🇷 Argentina · Xeon · $1.00/GB</button>
-        <button data-price="1.50">🇺🇸 Miami · R9 · $1.50/GB</button>
-      </div>
-
-      <div class="plan-grid" id="planGrid"></div>
-
-      <div class="calc-box">
-        <h3>Configurador a medida</h3>
-        <p style="text-align:center;color:var(--muted);font-size:13px;margin:0 0 16px">RAM 1–128 GB · CPU 1–16 cores dedicados</p>
-        <div class="calc-row">
-          <label>Ubicación
-            <select id="loc">
-              <option value="0.50">🇺🇸 Dallas · Intel — $0.50/GB</option>
-              <option value="0.95">🇺🇸 Miami Florida · R7 3700X — $0.95/GB</option>
-              <option value="0.95">🇨🇱 Santiago · Intel — $0.95/GB</option>
-              <option value="1.00">🇦🇷 Argentina · Intel Xeon — $1.00/GB</option>
-              <option value="1.50">🇺🇸 Miami · Ryzen 9 5950X — $1.50/GB</option>
-            </select>
-          </label>
+          <aside class="summary-panel" data-reveal data-reveal-delay="1">
+            <div class="summary-head"><div><span>Tu configuración</span><strong id="summaryName">Minecraft · Community</strong></div><span class="status-badge"><span class="status-dot"></span> Estimación</span></div>
+            <div class="price-total"><span id="priceTotal">$0.00</span> <small>/ mes</small></div>
+            <div class="summary-list"><div class="summary-row"><span>Ubicación</span><strong id="summaryLocation">—</strong></div><div class="summary-row"><span>RAM</span><strong id="summaryRam">8 GB</strong></div><div class="summary-row"><span>CPU</span><strong id="summaryCpu">2 cores</strong></div><div class="summary-row"><span>Almacenamiento</span><strong id="summaryStorage">40 GB</strong></div><div class="summary-row"><span>Tarifa RAM</span><strong id="summaryRate">—</strong></div><div class="summary-row"><span>Extras estimados</span><strong id="summaryExtras">—</strong></div></div>
+            <div class="estimate-note"><i></i><span>La tarifa por GB usa los valores del sitio original. Los multiplicadores de CPU y almacenamiento adicional son configurables en <code>assets/js/data.js</code> y deben alinearse con tu billing real antes de producción.</span></div>
+            <a class="button primary full" id="orderButton" href="cuenta.html" style="margin-top:18px">Continuar con esta configuración</a>
+            <a class="button ghost full" href="network.html" style="margin-top:8px">Comparar nodos</a>
+          </aside>
         </div>
-        <div class="calc-row">
-          <label>RAM
-            <select id="ram">
-              <option value="1">1 GB</option>
-              <option value="2">2 GB</option>
-              <option value="4">4 GB</option>
-              <option value="6">6 GB</option>
-              <option value="8" selected>8 GB</option>
-              <option value="12">12 GB</option>
-              <option value="16">16 GB</option>
-              <option value="24">24 GB</option>
-              <option value="32">32 GB</option>
-              <option value="48">48 GB</option>
-              <option value="64">64 GB</option>
-              <option value="96">96 GB</option>
-              <option value="128">128 GB</option>
-            </select>
-          </label>
-          <label>CPU dedicada
-            <select id="cores">
-              <option value="1" selected>1 core · 100% CPU</option>
-              <option value="2">2 cores · 200% CPU</option>
-              <option value="3">3 cores · 300% CPU</option>
-              <option value="4">4 cores · 400% CPU</option>
-              <option value="6">6 cores · 600% CPU</option>
-              <option value="8">8 cores · 800% CPU</option>
-              <option value="12">12 cores · 1200% CPU</option>
-              <option value="16">16 cores · 1600% CPU</option>
-            </select>
-          </label>
-        </div>
-        <div class="calc-total">
-          <span id="total">$4.00</span> <span>/mes</span>
-        </div>
-        <p style="text-align:center;color:var(--muted);font-size:12px;margin:0">CPU seleccionada: <strong id="cpuLabel" style="color:var(--text)">100% CPU</strong></p>
-        <a class="button primary full" href="cuenta.html" style="margin-top:14px">Contratar este plan</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="vps" style="background:rgba(13,15,20,.45)">
-    <div class="container">
-      <div class="section-head">
-        <span class="label">VPS</span>
-        <h2>Planes VPS</h2>
-        <p>Tarifas en USD. Acceso root y gestión desde el mismo panel Pterodactyl que Minecraft.</p>
-      </div>
-      <div class="location-grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
-        <article class="location"><span class="flag">🇺🇸</span><h3>Dallas</h3><p>Intel</p><strong>$0.45/GB</strong></article>
-        <article class="location"><span class="flag">🇺🇸</span><h3>Miami Florida</h3><p>Ryzen 7 3700X</p><strong>$0.855/GB</strong></article>
-        <article class="location"><span class="flag">🇨🇱</span><h3>Santiago</h3><p>Intel</p><strong>$0.855/GB</strong></article>
-        <article class="location"><span class="flag">🇦🇷</span><h3>Argentina</h3><p>Intel Xeon</p><strong>$0.90/GB</strong></article>
-        <article class="location"><span class="flag">🇺🇸</span><h3>Miami R9</h3><p>Ryzen 9 5950X</p><strong>$1.35/GB</strong></article>
-      </div>
-      <div style="text-align:center;margin-top:28px">
-        <a class="button primary" href="cuenta.html">Crear cuenta y pedir VPS</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="ubicaciones">
-    <div class="container">
-      <div class="section-head">
-        <span class="label">UBICACIONES</span>
-        <h2>Nodos disponibles</h2>
-        <p>Elegí la región más cercana a tus jugadores.</p>
-      </div>
-      <div class="location-grid">
-        <article class="location"><span class="flag">🇺🇸</span><h3>Dallas</h3><p>Intel · Precio bajo</p><strong>$0.50/GB</strong></article>
-        <article class="location"><span class="flag">🇺🇸</span><h3>Miami Florida</h3><p>Ryzen 7 3700X</p><strong>$0.95/GB</strong></article>
-        <article class="location"><span class="flag">🇨🇱</span><h3>Santiago</h3><p>Intel · Precio bajo</p><strong>$0.95/GB</strong></article>
-        <article class="location"><span class="flag">🇦🇷</span><h3>Argentina</h3><p>Intel Xeon</p><strong>$1.00/GB</strong></article>
-        <article class="location"><span class="flag">🇺🇸</span><h3>Miami</h3><p>Ryzen 9 5950X</p><strong>$1.50/GB</strong></article>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container footer">
-    <div class="footer-brand">
-      <img class="brand-logo" src="assets/SinFondo.png" alt="" width="28" height="28">
-      <span>NexusNodes</span>
-    </div>
-    <div class="footer-links">
-      <a href="index.html">Inicio</a>
-      <a href="cuenta.html">Cuenta</a>
-      <a href="https://panel.nexusnodes.lat" target="_blank" rel="noopener">Panel</a>
-    </div>
-  </div>
-</footer>
-<script src="js/planes.js@v=9"></script>
-<script>
-// Rutas /planes/minecraft etc. → scroll a sección
-(function(){
-  const path = location.pathname.replace(/\/+$/,'');
-  const map = {
-    '/planes/minecraft': 'minecraft',
-    '/planes/vps': 'vps',
-    '/planes/ubicaciones': 'ubicaciones'
-  };
-  const id = map[path];
-  if (id) {
-    const el = document.getElementById(id);
-    if (el) setTimeout(() => el.scrollIntoView({behavior:'smooth', block:'start'}), 80);
-  }
-})();
-</script>
+    <section class="section"><div class="container faq-grid"><aside class="faq-aside" data-reveal><span class="label">Precios</span><h2 style="font-size:40px;letter-spacing:-.055em;margin:12px 0 0">Sin trampas visuales.</h2><p>El configurador deja claro qué es dato original y qué es estimación del frontend.</p></aside><div class="faq-list" data-reveal data-reveal-delay="1"><div class="faq-item" data-faq><button aria-expanded="false"><span>¿Por qué la CPU ahora cambia el precio?</span><span>+</span></button><div class="faq-answer"><div><p>En la versión original elegir 100% o 1600% CPU no cambiaba el total. La nueva versión corrige la lógica de producto usando un multiplicador configurable; debes reemplazarlo por tu tarifa real.</p></div></div></div><div class="faq-item" data-faq><button aria-expanded="false"><span>¿Puedo añadir más nodos?</span><span>+</span></button><div class="faq-answer"><div><p>Sí. Los nodos viven en <code>assets/js/data.js</code>. Network, tablas y configurador los consumen desde esa única fuente.</p></div></div></div><div class="faq-item" data-faq><button aria-expanded="false"><span>¿Necesito compilar algo?</span><span>+</span></button><div class="faq-answer"><div><p>No. Todo funciona como HTML, CSS y JavaScript estático; basta servir la carpeta por HTTP/HTTPS.</p></div></div></div></div></div></section>
+  </main>
+  <div data-site-footer></div>
+  <script src="assets/js/data.js"></script><script src="assets/js/app.js"></script><script src="assets/js/pricing.js"></script>
 </body>
 </html>

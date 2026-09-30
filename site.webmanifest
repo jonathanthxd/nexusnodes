@@ -1,0 +1,10 @@
+{
+  "name": "NexusNodes",
+  "short_name": "NexusNodes",
+  "description": "Minecraft Hosting & VPS",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#05060a",
+  "theme_color": "#05060a",
+  "icons": []
+}
