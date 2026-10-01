@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.0.1 — Vercel TypeScript hotfix
+
+- Fixed production type-check failure in `src/app/layout.tsx` by importing `siteUrl` from `@/lib/utils`.
+- Aligned `tsconfig.json` with the changes Next.js 16 was applying automatically during Vercel builds (`jsx: react-jsx` and `.next/dev/types/**/*.ts`).
+- Pinned the deployment engine to Node `20.x` to avoid automatic major Node upgrades on Vercel.
+- Re-ran static diagnostics for unresolved local identifiers after the fix; no remaining `TS2304` diagnostics were found.
+
 ## 5.0.0 — Next.js Super UI Update
 
 ### Design system

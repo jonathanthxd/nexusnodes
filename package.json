@@ -1,6 +1,6 @@
 {
   "name": "nexusnodes-next",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -22,6 +22,6 @@
     "typescript": "^5.8.3"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": "20.x"
   }
 }

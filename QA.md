@@ -104,3 +104,7 @@ Interacciones a probar:
 - Status fetch a `/api/status`.
 
 Si el build real devuelve un error de versión o typings de una dependencia, corrígelo sobre esta v5 en vez de volver a la arquitectura estática.
+## 5.0.1 Vercel hotfix
+
+The Vercel build for v5.0.0 compiled successfully and then failed TypeScript checking because `src/app/layout.tsx` referenced `siteUrl()` without importing it. v5.0.1 adds the missing import. A local dependency-complete `next build` still cannot be executed in this container because external npm registry access is unavailable, so the post-fix production build should be confirmed by Vercel.
+
